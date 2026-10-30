@@ -4,18 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>PanelPal · the everything sensor (concept demo)</title>
-<meta name="description" content="Point a small camera at any machine screen or gauge. PanelPal's AI builds a live dashboard for your site. Concept demo with example data.">
+<title>PanelPal · the everything sensor (demo)</title>
+<meta name="description" content="Point a small camera at any machine screen or gauge. PanelPal's AI builds a live dashboard for your site. Demo with example data.">
 <link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="brand/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="brand/favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="site.css">
+<style>.hw .c2{grid-column:span 3}@media (max-width:760px){.hw .c2{grid-column:span 1}}</style>
 <style>.planned{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;border:1px dashed currentColor;font-size:11px;font-weight:600;line-height:16px;vertical-align:2px;opacity:.75;white-space:nowrap}</style>
 </head>
 <body>
-<div class="banner"><b>Concept demo · example data.</b> All machines, names and numbers on this page are examples.</div>
+<div class="banner"><b>Demo · example data.</b> All machines, names and numbers on this page are examples.</div>
 <header class="nav"><div class="wrap">
   <a class="logo" href="#top"><img src="brand/logo-light.svg" alt="PanelPal"></a>
   <nav><a href="#how">How it works</a><a href="#reads">What it reads</a><a href="#camera">The camera</a><a href="#plans">Plans</a><a href="#privacy">Privacy &amp; data</a></nav>
@@ -38,7 +39,7 @@
     <div class="where"><span>Machine shops</span><span>Labs</span><span>Kitchens</span><span>Growth rooms</span><span>Plant rooms</span><span>Any site with a screen or gauge</span></div>
   </div>
   <div class="hero-art">
-    <img class="cam" src="img/cnc-hmi-camera-view.png" alt="Camera view of a CNC mill operator screen. Spindle speed, spindle load, parts today and alarm are each boxed and labelled with a confidence score. Example data.">
+    <img class="cam" src="img/cnc-hmi-camera-clean.png" alt="Camera view of a CNC mill operator screen. Spindle speed, spindle load, parts today and alarm are each boxed. Example data.">
     <img class="phone" src="img/hero-phone-cnc3.png" alt="Phone screen from the PanelPal demo: CNC mill 3 logging live. Spindle speed 8,000 rpm, load 42 %, parts today 312, uptime today 87 %. Example data.">
     <span class="pill ex tag">Example data</span>
   </div>
@@ -64,7 +65,7 @@
 </div></section>
 
 <section id="camera"><div class="wrap camsec">
-  <div><div class="frame"><img src="img/camera-view.jpg" alt="Camera view of a growth chamber controller with four boxed values and confidence scores"></div><p class="cap">What the camera sees on a growth room controller · rendered mock-up · example data</p></div>
+  <div><div class="frame"><img src="img/camera-view-clean.jpg" alt="Camera view of a growth chamber controller with four boxed values"></div><p class="cap">What the camera sees on a growth room controller · rendered mock-up · example data</p></div>
   <div>
     <p class="eyebrow">The camera view</p>
     <h2 class="h2">Every number comes with its picture.</h2>
@@ -102,9 +103,8 @@
   <div class="hw">
     <figure class="a"><div class="im"><img src="img/img-008.jpg" alt="White camera case on a lab bench, angled up at an incubator touchscreen"></div><figcaption><b>On a lab bench</b>About 22 cm from a 7-inch controller, tilted to frame the whole screen.</figcaption></figure>
     <figure class="b"><div class="im"><img src="img/img-009.jpg" alt="Two growth chambers, each with a small white camera on a gooseneck arm in front of the controller"></div><figcaption><b>At a growth chamber</b>A magnetic gooseneck holds the camera about 19 cm in front of the controller.</figcaption></figure>
-    <figure class="c"><div class="im"><img src="img/img-007.jpg" alt="Two white camera cases on base plates, one tilted back on its hinge"></div><figcaption><b>Current case</b>Tilt hinge with a bolt, base plate, USB-C on top.</figcaption></figure>
-    <figure class="c"><div class="im"><img src="img/img-011.jpg" alt="Proposed small white camera case with a round lens window, alone and on a magnetic stand"></div><figcaption><b>Next: a smaller case</b>About 25 × 30 × 19 mm, with a status light and a magnetic stand.</figcaption></figure>
-    <figure class="c"><div class="im"><img src="img/img-012.jpg" alt="Exploded view of the proposed case and its parts"></div><figcaption><b>Inside</b>An ESP32-S3 board and a small camera module, held by two M2 screws.</figcaption></figure>
+    <figure class="c c2"><div class="im"><img src="img/img-011.jpg" alt="Small white camera case with a round lens window, alone and on a magnetic stand"></div><figcaption><b>Current case</b>About 25 × 30 × 19 mm, with a status light and a magnetic stand.</figcaption></figure>
+    <figure class="c c2"><div class="im"><img src="img/img-012.jpg" alt="Exploded view of the camera case and its parts"></div><figcaption><b>Inside</b>A small Wi-Fi board and a camera module, held by two M2 screws.</figcaption></figure>
   </div>
 </div></section>
 
@@ -134,7 +134,7 @@
 </div></section>
 
 <section id="plans"><div class="wrap">
-  <div class="sec-head"><p class="eyebrow">Plans</p><h2 class="h2">Every plan gets the layout. Higher plans draw it in more detail.</h2><p>The AI setup and the first dashboard are free. Plans are a concept and can change.</p></div>
+  <div class="sec-head"><p class="eyebrow">Plans</p><h2 class="h2">Every plan gets the layout. Higher plans draw it in more detail.</h2><p>The AI setup and the first dashboard are free. Plans can change.</p></div>
   <div class="tiers">
     <div class="card tier"><div class="thumb"><img src="img/tier-free.png" alt="Machine tiles view"></div><div class="body"><span class="view">Machine tiles</span><h3>Free</h3><div class="price">Up to 3 machines · example plan</div>
       <ul><li>Dashboard built by the AI</li><li>Live view for each machine</li><li>30 days of history <span class="planned">Planned</span></li><li>Automatic recalibration <span class="planned">Planned</span></li></ul>
@@ -179,7 +179,7 @@
 
 <footer><div class="wrap">
   <img src="brand/logo-light.svg" alt="PanelPal">
-  <span>Concept demo · example data</span>
+  <span>Demo · example data</span>
   <span class="sp"></span>
   <a href="#privacy">Privacy &amp; data</a><a href="./demo/">Try the demo</a>
 </div></footer>
