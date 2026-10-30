@@ -1,296 +1,186 @@
-<!doctype html><html lang="en-GB"><head><meta name="robots" content="noindex, nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI Factory Manager · An AI that looks after your factory</title>
-<!-- Hi-fi marketing page. Static, no build step. All screens and numbers are example data. Prices are not set. -->
-<link rel="icon" type="image/png" sizes="32x32" href="./brand/logo/b-scan/sidebar-mark-32.png"><link rel="icon" type="image/svg+xml" href="./brand/logo/b-scan/mark.svg"><link rel="stylesheet" href="hifi.css"><script src="chat.js"></script>
-<style>
-body{min-width:0}
-.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
-a{color:inherit;text-decoration:none}
-nav{height:76px;display:flex;align-items:center;gap:36px;border-bottom:1px solid var(--color-border)}
-nav .links{display:flex;gap:30px;margin-left:24px}nav .links a{color:var(--color-muted);font-size:15px;font-weight:500}
-nav .cta{margin-left:auto;display:flex;gap:10px}
-.menu{display:none;margin-left:auto;width:38px;height:38px;border:1px solid var(--color-border);border-radius:6px;place-items:center;font-size:18px}
-section{padding:96px 0}
-.kicker{color:var(--color-accent);margin-bottom:14px}
-h1{font-size:68px;line-height:1.02;margin:0 0 22px;font-weight:700}
-h2{font-size:46px;line-height:1.08;margin:0;font-weight:700}
-h3{font-size:19px;margin:0 0 6px}
-.lead{font-size:20px;line-height:1.5;color:var(--color-muted);margin:0 0 30px;max-width:520px}
-.hero{position:relative;overflow:hidden;padding:72px 0 64px}
-.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(800px 500px at 78% 40%,#d4f53c10,transparent 70%)}
-.hero-grid{display:grid;grid-template-columns:520px 1fr;gap:56px;position:relative}
-.pill{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--color-border);border-radius:999px;padding:5px 12px 5px 6px;margin-bottom:28px;font-size:13px;color:var(--color-muted)}
-.pill b{background:var(--color-surface-3);color:var(--color-text);border-radius:999px;padding:2px 8px;font-size:12px}
-.big{height:50px;padding:0 26px;font-size:16px}
-.ctas{display:flex;gap:12px}
-.ticks{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:30px;font-size:14px;color:var(--color-muted)}
-.frame{border-radius:12px;overflow:hidden;border:1px solid var(--color-border);background:var(--color-bg);box-shadow:0 30px 80px #00000080}
-.frame-top{height:40px;background:var(--color-surface);border-bottom:1px solid var(--color-border);display:flex;align-items:center;gap:10px;padding:0 14px;font-size:13px}
-.dot{width:10px;height:10px;border-radius:50%;background:var(--color-surface-3)}
-.shot{display:block;width:100%;height:auto}
-.head{display:flex;align-items:flex-end;gap:40px;margin-bottom:40px}
-.head p{font-size:17px;max-width:470px;margin:0 0 4px auto}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card.pad{padding:26px}
-.ic{width:40px;height:40px;border-radius:8px;display:grid;place-items:center;background:var(--color-surface-2);border:1px solid var(--color-border);margin-bottom:18px}
-.ic svg{width:18px;height:18px}
-.num{font:600 12px var(--font-mono);color:var(--color-accent-ink);background:var(--color-accent);border-radius:4px;padding:3px 7px;margin-right:8px}
-.alt{background:var(--color-surface);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border)}
-.feat{display:grid;grid-template-columns:420px 1fr;gap:56px;align-items:center;margin-top:56px}
-.feat.rev{grid-template-columns:1fr 420px}.feat.rev .txt{order:2}
-.feat ul{list-style:none;margin:20px 0 0;padding:0}.feat li{padding:10px 0;border-top:1px solid var(--color-border);color:var(--color-muted);font-size:15px}
-.feat li b{color:var(--color-text);font-weight:600}
-.flist{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--color-border);border:1px solid var(--color-border);border-radius:10px;overflow:hidden;margin-top:56px}
-.flist>div{background:var(--color-bg);padding:24px}
-.hw{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
-.hw .card{padding:20px;display:flex;flex-direction:column;gap:8px}
-.cost{font:600 14px var(--font-mono);margin-top:auto;padding-top:10px}
-.uc{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.uc .card{padding:24px}
-.price{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.price .card{padding:30px;display:flex;flex-direction:column;gap:16px}
-.price .card.mid{border-color:var(--color-accent);box-shadow:0 0 0 1px var(--color-accent) inset}
-.price ul{margin:0;padding:0;list-style:none}.price li{padding:9px 0 9px 26px;position:relative;border-top:1px solid var(--color-border);font-size:15px}
-.price li:before{content:"✓";position:absolute;left:2px;color:var(--color-accent)}
-.tbc{font:600 28px var(--font-display);margin:4px 0}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
-.field .in{height:46px;border:1px solid var(--color-border);background:var(--color-bg);border-radius:6px;padding:0 14px;display:flex;align-items:center;color:var(--color-faint);font-size:15px}
-.field.full{grid-column:1/-1}
-.offer{display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:center;padding:44px 48px;border:1px solid var(--color-accent);border-radius:14px;background:radial-gradient(600px 300px at 90% 0%,#d4f53c14,transparent 70%),var(--color-surface)}
-.offer h2{margin:0 0 14px}
-.offer .lead{max-width:600px;margin:0 0 26px;color:var(--color-text)}
-.offer ol{list-style:none;margin:0;padding:0;counter-reset:o}
-.offer li{counter-increment:o;display:flex;gap:12px;align-items:baseline;padding:12px 0;border-top:1px solid var(--color-border);font-size:15px;color:var(--color-muted)}
-.offer li:first-child{border-top:0}
-.offer li:before{content:counter(o);font:600 12px var(--font-mono);color:var(--color-accent-ink);background:var(--color-accent);border-radius:4px;padding:3px 7px}
-.offer li b{color:var(--color-text)}
-.tag{display:inline-block;font:600 11px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-ink);background:var(--color-accent);border-radius:3px;padding:4px 6px;margin-left:8px;vertical-align:1px}
-.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.g4 .card{padding:24px}
-footer{border-top:1px solid var(--color-border);padding:40px 0 48px;font-size:14px}
-.fgrid{display:flex;gap:48px;align-items:flex-start}.fgrid .col a{display:block;color:var(--color-muted);margin-bottom:8px}
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>PanelPal · the everything sensor (concept demo)</title>
+<meta name="description" content="Point a small camera at any machine screen or gauge. PanelPal's AI builds a live dashboard for your site. Concept demo with example data.">
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="brand/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="banner"><b>Concept demo · example data.</b> All machines, names and numbers on this page are examples.</div>
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#top"><img src="brand/logo-light.svg" alt="PanelPal"></a>
+  <nav><a href="#how">How it works</a><a href="#reads">What it reads</a><a href="#camera">The camera</a><a href="#plans">Plans</a><a href="#privacy">Privacy &amp; data</a></nav>
+  <span class="sp"></span>
+  <a class="link hide-m" href="./demo/">Try the demo</a>
+  <a class="btn primary sm" href="#join">Book a demo</a>
+</div></header>
 
-@media (max-width:640px){
- .wrap{padding:0 20px}
- nav{height:64px}nav .links,nav .cta{display:none}.menu{display:grid}
- nav img{height:28px!important}
- section{padding:56px 0}
- .hero{padding:32px 0 40px}.hero-grid{grid-template-columns:1fr;gap:32px}
- h1{font-size:42px;line-height:1.04;margin-bottom:16px}
- h2{font-size:30px;line-height:1.12}
- .lead{font-size:17px;margin-bottom:14px}
- .pill{margin-bottom:20px;font-size:12.5px}
- .ctas{flex-direction:column}.ctas .btn{width:100%}
- .ticks{gap:6px 16px;margin-top:18px;font-size:13px}
- .head{display:block;margin-bottom:24px}.head p{margin:12px 0 0;font-size:15px}
- .g3,.g4,.uc,.price,.flist,.form{grid-template-columns:1fr}
- .offer{grid-template-columns:1fr;gap:24px;padding:28px 22px}
- .offer .ctas .btn{width:100%}
- .hw{grid-template-columns:1fr 1fr}
- .feat,.feat.rev{grid-template-columns:1fr;gap:20px;margin-top:40px}.feat.rev .txt{order:0}
- .fgrid{flex-direction:column;gap:24px}.fgrid>div{margin-left:0!important}
- .form .ctas .btn{flex:none!important;height:50px}
- .hide-m{display:none!important}
- .bigp{font-size:15px!important}
- .card:has(>.ic),.flist>div{display:grid;grid-template-columns:40px 1fr;column-gap:14px;padding:20px}
- .card:has(>.ic)>.ic,.flist>div>.ic{grid-row:span 3;margin:0}
- .card.pad{padding:20px}
- .hw .card:has(>.ic){grid-template-columns:1fr}
- .hw .card>.ic{grid-row:auto}
- .phone{max-width:300px;margin:0 auto;border-radius:24px;max-height:620px;-webkit-mask-image:linear-gradient(#000 80%,transparent)}
-}
-</style></head><body><div role="note" style="background:#d4f53c;color:#0b0d0e;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:4px 12px">Concept demo · example data</div>
-
-<div class="wrap"><nav>
- <img src="./brand/logo/b-scan/lockup-horizontal-dark.png" alt="AI Factory Manager" style="height:34px">
- <div class="links"><a href="#how">How it works</a><a href="#features">Features</a><a href="#hardware">Hardware</a><a href="#pricing">Pricing</a></div>
- <div class="cta"><a href="#start" class="btn ghost sm" style="height:40px">Join the waitlist</a><a href="#start" class="btn primary sm" style="height:40px">Book a demo</a></div>
- <span class="menu">☰</span>
-</nav></div>
-
-<!-- 2. Hero -->
-<section class="hero"><div class="wrap hero-grid">
- <div style="padding-top:28px" class="hero-txt">
-  <div class="pill"><b>UK</b>For small and mid-sized factories</div>
-  <h1 class="display">An AI that looks after your factory.</h1>
-  <p class="lead">It checks every machine on a schedule and tells the right person. Ask it “what’s wrong with this machine?” and it answers from the machine’s logs and manuals.</p>
-  <p style="font-size:20px;font-weight:600;margin:0 0 32px" class="bigp">No need to call a specialist every time.</p>
-  <div class="ctas"><a href="#start" class="btn primary big">Book a demo</a><a href="#start" class="btn ghost big">Join the waitlist</a></div>
-  <p style="margin:0 0 18px;font-size:15px"><a href="./demo/" style="color:var(--color-accent);font-weight:600">See the clickable demo (example data) →</a></p><div class="ticks"><span>✓ Start with any smart plug</span><span>✓ Start without PLC work</span><span>✓ Prices in pounds</span></div>
- </div>
- <div class="frame" style="align-self:start">
-  <div class="frame-top"><span class="dot hide-m"></span><span class="dot hide-m"></span><span class="dot hide-m"></span>
-   <img src="./brand/logo/b-scan/mark.png" style="width:20px;height:20px" alt=""><b>Ask AI</b><span class="muted">· CNC Lathe</span><span class="ex" style="margin-left:auto">Example data</span></div>
-  <div id="chat" style="padding:18px;display:flex;flex-direction:column;gap:14px"></div>
- </div>
+<main id="top">
+<section class="first"><div class="wrap hero">
+  <div>
+    <p class="eyebrow">The everything sensor</p>
+    <h1>Your machines already show their numbers. <em>PanelPal reads them.</em></h1>
+    <p class="lead">Point a small camera at any screen or gauge. Our AI builds a live dashboard for your site. No wiring and no engineer.</p>
+    <div class="ctas">
+      <a class="btn primary" href="#join">Book a demo</a>
+      <a class="btn soft" href="#join">Join the waitlist</a>
+      <a class="link" href="./demo/">Try the demo →</a>
+    </div>
+    <div class="where"><span>Machine shops</span><span>Labs</span><span>Kitchens</span><span>Growth rooms</span><span>Plant rooms</span><span>Any site with a screen or gauge</span></div>
+  </div>
+  <div class="hero-art">
+    <img class="cam" src="img/cnc-hmi-camera-view.png" alt="Camera view of a CNC mill operator screen. Spindle speed, spindle load, parts today and alarm are each boxed and labelled with a confidence score. Example data.">
+    <img class="phone" src="img/hero-phone-cnc3.png" alt="Phone screen from the PanelPal demo: CNC mill 3 logging live. Spindle speed 8,000 rpm, load 42 %, parts today 312, uptime today 87 %. Example data.">
+    <span class="pill ex tag">Example data</span>
+  </div>
 </div></section>
 
-<!-- 3. Problem -->
-<section class="alt"><div class="wrap">
- <div class="head"><div><div class="label kicker">The problem</div><h2 class="display">Every fault means a call to a specialist.</h2></div>
- <p class="muted">Most small factories have no one watching the machines all day. You find out about a problem when a part is late or a bill arrives.</p></div>
- <div class="g3">
-  <div class="card pad"><div class="ic" style="color:var(--color-idle)" id="i1"></div><h3>Stops you don’t see</h3><div class="muted">A machine stops and waits for material. Nobody writes it down, so nobody fixes the cause.</div></div>
-  <div class="card pad"><div class="ic" style="color:var(--color-warning)" id="i2"></div><h3>Faults found too late</h3><div class="muted">An alarm stays on the screen for days. When someone sees it, the repair takes longer and costs more.</div></div>
-  <div class="card pad"><div class="ic" style="color:var(--color-muted)" id="i3"></div><h3>Energy you can’t explain</h3><div class="muted">The bill goes up, but you can’t see which machine or which shift used the power.</div></div>
- </div>
-</div></section>
-
-<!-- 4. How it works -->
 <section id="how"><div class="wrap">
- <div class="head"><div><div class="label kicker">How it works</div><h2 class="display">Accessible to any factory.<br>Start cheap, grow for reliability.</h2></div>
- <p class="muted">Start with any cheap smart device. Add more sensors when you are ready. Example: an AC unit that cools the packing area.</p></div>
- <div class="g3">
-  <div class="card pad"><div style="margin-bottom:10px"><span class="num">1</span><b style="font-size:19px">Scan</b></div><div class="muted">Walk around the area with your phone. The app draws the floor plan. Mark the AC unit on the plan.</div></div>
-  <div class="card pad"><div style="margin-bottom:10px"><span class="num">2</span><b style="font-size:19px">Plug in</b></div><div class="muted">Put two temperature sensors in the area. Connect the AC unit to a smart plug. No wiring is necessary.</div></div>
-  <div class="card pad"><div style="margin-bottom:10px"><span class="num">3</span><b style="font-size:19px">AI builds the dashboard</b></div><div class="muted">The AI shows the temperature and when the AC was on. It suggests a rule for the AC. You approve the rule. Then it shows the energy and money saved.</div></div>
- </div>
- <div class="frame" style="margin-top:28px"><img class="shot" src="./shots/ac-automation-desktop.png" alt="AC automation screen with example data"></div>
- <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;margin-top:16px;font-size:14px" class="muted">
-  <span>Want more control? On the Custom plan, we fit an ESP32 controller to the AC unit.</span><span class="ex">Example data · not a real factory</span></div>
+  <div class="sec-head"><p class="eyebrow">How it works</p><h2 class="h2">The AI does the setup. Cameras feed the dashboard.</h2><p>The AI does the work of a controls engineer: it finds what is on your floor, what to measure and how to show it.</p></div>
+  <div class="steps">
+    <div class="card step"><div class="n">1</div><h3>Describe your site</h3><p>Type a sentence. Add a floor plan or a few photos if you like. The AI finds and names your machines.</p><div class="shot"><img src="img/s1-describe.png" alt="Phone screen: Tell us about your site"></div></div>
+    <div class="card step"><div class="n">2</div><h3>Get a dashboard</h3><p>The AI suggests what to track on each machine and builds the dashboard. Change it by asking in plain English.</p><div class="shot"><img src="img/s2-generating.png" alt="Phone screen: Building your dashboard, 60% done"></div></div>
+    <div class="card step"><div class="n">3</div><h3>Feed it with cameras</h3><p>Put a small camera in front of each screen or gauge. It reads the values every few seconds.</p><div class="shot"><img src="img/s5-identify.png" alt="Phone screen: identify the machine and choose values to log"></div></div>
+  </div>
+  <div class="card pipe" aria-label="Pipeline from site description to live dashboard">
+    <div class="lbl">Set up: you describe the site, the AI builds the rest</div>
+    <div class="node"><b>Describe it</b><span>words, a floor plan or photos of the floor</span></div>
+    <div class="node hi"><b>AI site model</b><span>finds each machine, picks the values to track, plans where cameras go</span></div>
+    <div class="node end"><b>Your dashboard</b><span>layout and data model, edit it in plain English, alerts and reports</span></div>
+    <div class="lbl">Feed: cameras read each machine's own screen</div>
+    <div class="node"><b>Camera, about $10</b><span>points at a screen or gauge, no wiring</span></div>
+    <div class="node"><b>Vision model maps the screen</b><span>one time per machine, finds and labels each value</span></div>
+    <div class="node end"><b>On-device reading</b><span>reads only the mapped values, every few seconds</span></div>
+  </div>
 </div></section>
 
-<!-- 4b. Low-risk offer -->
-<section id="offer" style="padding-top:0"><div class="wrap"><div class="offer">
- <div><div class="label kicker">A small first step</div>
-  <h2 class="display">Tell us your worst machine.</h2>
-  <p class="lead">Plug in one cheap device and we’ll tell you what’s wrong, or what to connect next.</p>
-  <div class="ctas"><a href="#start" class="btn primary big">Book a demo</a><a href="#start" class="btn ghost big">Join the waitlist</a></div></div>
- <ol>
-  <li><span><b>Pick one machine.</b> The one that gives you the most trouble.</span></li>
-  <li><span><b>Connect one cheap device.</b> For example, a smart plug or a power sensor.</span></li>
-  <li><span><b>Read the AI’s answer.</b> What is wrong, or which device to connect next.</span></li>
- </ol>
-</div></div></section>
-
-<!-- 5. Features -->
-<section id="features" class="alt"><div class="wrap">
- <div class="head"><div><div class="label kicker">Features</div><h2 class="display">It does the checking. You make the decisions.</h2></div></div>
- <div class="feat">
-  <div class="txt"><h3 style="font-size:26px" class="display">A daily AI check of every machine</h3>
-   <p class="muted" style="font-size:16px">Each morning it checks all machines and areas. You get one short report: what needs action, what to watch, and what it can’t read yet.</p>
-   <ul><li><b>Plain English.</b> No codes, no charts to decode.</li><li><b>The right person.</b> Maintenance gets the fault. The manager gets the summary.</li><li><b>Honest gaps.</b> It says when it can’t read a machine.</li></ul></div>
-  <div class="frame phone"><picture><source media="(max-width:640px)" srcset="./shots/daily-check-mobile.png"><img class="shot" src="./shots/daily-check-desktop.png" alt="Daily AI check screen with example data"></picture></div>
- </div>
- <div class="feat rev">
-  <div class="txt"><h3 style="font-size:26px" class="display">It tells you what to connect</h3>
-   <p class="muted" style="font-size:16px">When it can’t read a machine, it says why. Then it gives you the simplest ways to connect it, with step-by-step instructions.</p>
-   <ul><li><b>Clip on a power sensor.</b> The quickest start.</li><li><b>Point a camera at the screen.</b> It reads alarms and counters.</li><li><b>Connect the USB port.</b> We fit it on the Custom plan.</li></ul></div>
-  <div class="frame"><img class="shot" src="./shots/cant-read-desktop.png" alt="Screen showing a machine the AI can't read yet, with example data"></div>
- </div>
- <div class="flist">
-  <div><div class="ic" id="f1"></div><h3>Daily AI check</h3><div class="muted">One short report each morning.</div></div>
-  <div><div class="ic" id="f2"></div><h3>Alerts to the right person</h3><div class="muted">Plain-English messages by role. No noise.</div></div>
-  <div><div class="ic" id="f3"></div><h3>Ask what’s wrong</h3><div class="muted">Answers from logs, sound, power and manuals. It shows its sources.</div></div>
-  <div><div class="ic" id="f4"></div><h3>Reads machine screens</h3><div class="muted">A camera reads alarms and counters from older machines.</div></div>
-  <div><div class="ic" id="f5"></div><h3>Simple automations</h3><div class="muted">Turn things on and off with a rule it suggests and you approve.</div></div>
-  <div><div class="ic" id="f6"></div><h3>Tells you what to connect</h3><div class="muted">Clear options and steps when it can’t read a machine.</div></div>
- </div>
+<section id="camera"><div class="wrap camsec">
+  <div><div class="frame"><img src="img/camera-view.jpg" alt="Camera view of a growth chamber controller with four boxed values and confidence scores"></div><p class="cap">What the camera sees on a growth room controller · rendered mock-up · example data</p></div>
+  <div>
+    <p class="eyebrow">The camera view</p>
+    <h2 class="h2">Every number comes with its picture.</h2>
+    <ul class="facts">
+      <li><span class="ic">1</span><div><b>The AI marks each value one time</b><span>It puts a box around each value and gives it a name. You confirm the boxes.</span></div></li>
+      <li><span class="ic">2</span><div><b>The camera reads every 2 seconds</b><span>It reads only the boxed values. It does this on the device.</span></div></li>
+      <li><span class="ic">3</span><div><b>Each reading has a confidence score</b><span>A low score tells you to check the reading. If the camera loses the screen, the app shows "No signal". It does not guess.</span></div></li>
+      <li><span class="ic">4</span><div><b>The frame is kept</b><span>You can compare any number with the image it came from.</span></div></li>
+    </ul>
+    <div class="conf"><span style="background:var(--color-cam-high)">0.97 high</span><span style="background:var(--color-cam-mid)">0.81 check</span><span style="background:var(--color-cam-low)">0.42 low</span></div>
+  </div>
 </div></section>
 
-<!-- 6. Hardware -->
+<section id="reads"><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">What it can read</p><h2 class="h2">One camera, many kinds of reading.</h2><p>Each value gets the reader that suits it. The vision model marks the area one time, and you confirm it.</p></div>
+  <table class="tbl">
+    <thead><tr><th>Reader</th><th>Reads</th><th>Examples</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr class="built"><td>Digits and text</td><td>Numbers and words on screens</td><td class="ex">Growth chamber and incubator controllers, balances, pH and EC meters, temperature controllers, motor drive displays, old PCs that run instrument software</td><td><span class="pill run"><span class="dot"></span>In the demo</span></td></tr>
+      <tr><td>Dial</td><td>A needle's position on a printed scale</td><td class="ex">Hydraulic, pneumatic and vacuum gauges, CO₂ cylinder regulators, autoclave pressure, liquid nitrogen dewar levels, bimetal thermometers</td><td><span class="pill next"><span class="dot"></span>Next</span></td></tr>
+      <tr><td>Counter</td><td>Rolling digit wheels</td><td class="ex">Water, gas and electricity meters, hour meters, mechanical cycle counters</td><td><span class="pill next"><span class="dot"></span>Next</span></td></tr>
+      <tr><td>Colour</td><td>A state or a colour index</td><td class="ex">Stack lights and panel LEDs, chamber lights on or off, pH colour change, leaf greenness</td><td><span class="pill later"><span class="dot"></span>Later</span></td></tr>
+      <tr><td>Level</td><td>How full something is</td><td class="ex">Sight glasses, hydroponic tanks, carboys, coolant and waste containers</td><td><span class="pill later"><span class="dot"></span>Later</span></td></tr>
+      <tr><td>Presence</td><td>Whether something is there</td><td class="ex">A tray on a shelf, a door or guard open, a part in a fixture</td><td><span class="pill later"><span class="dot"></span>Later</span></td></tr>
+      <tr><td>Motion</td><td>Running or idle</td><td class="ex">Shakers, stirrers, fans, conveyors, spindles</td><td><span class="pill later"><span class="dot"></span>Later</span></td></tr>
+      <tr><td>Count</td><td>How many objects</td><td class="ex">Pots in a tray, parts in a bin</td><td><span class="pill later"><span class="dot"></span>Later</span></td></tr>
+      <tr><td>Area</td><td>How much of an area one colour covers</td><td class="ex">Canopy cover per tray, spills, rust</td><td><span class="pill later"><span class="dot"></span>Later</span></td></tr>
+    </tbody>
+  </table>
+  <p class="note">Colour, level, presence, motion, count and area are simple filters on the same frames. They are indicators, not calibrated measurements, and the app labels them that way.</p>
+</div></section>
+
 <section id="hardware"><div class="wrap">
- <div class="head"><div><div class="label kicker">Hardware</div><h2 class="display">Start with one cheap device.<br>Add more later.</h2></div>
- <p class="muted">Use the smart devices you already have, or buy cheap ones. Add better sensors only where you need them.</p></div>
- <div class="hw">
-  <div class="card"><div class="ic" id="h1"></div><b>Smart plug</b><div class="muted" style="font-size:14px">Turns a machine on and off. Reads its power.</div><div class="cost">About £12</div></div>
-  <div class="card"><div class="ic" id="h2"></div><b>Temperature sensor</b><div class="muted" style="font-size:14px">Watches an area, a cabinet or a motor.</div><div class="cost">About £15</div></div>
-  <div class="card"><div class="ic" id="h3"></div><b>Power sensor</b><div class="muted" style="font-size:14px">Clips on a supply cable. Shows running, idle and stopped.</div><div class="cost">About £40</div></div>
-  <div class="card"><div class="ic" id="h4"></div><b>Microphone</b><div class="muted" style="font-size:14px">Hears a new noise before it becomes a fault.</div><div class="cost">About £25</div></div>
-  <div class="card"><div class="ic" id="h5"></div><b>Camera</b><div class="muted" style="font-size:14px">Reads alarms and counters from a machine screen.</div><div class="cost">About £70</div></div>
-  <div class="card" style="border-style:dashed;border-color:var(--color-accent)"><div class="ic" id="h6"></div><b>ESP32 controller</b><div class="muted" style="font-size:14px">Controls fixed equipment. We design and fit it.</div><div class="cost" style="color:var(--color-accent)">Custom plan</div></div>
- </div>
- <div style="margin-top:16px;display:flex;justify-content:flex-end"><span class="ex">Example data · costs are not a quote</span></div>
+  <div class="sec-head"><p class="eyebrow">Camera hardware</p><h2 class="h2">It sits in front of the display. It never touches the machine.</h2><p>These are rendered mock-ups, not photos.</p></div>
+  <div class="hw">
+    <figure class="a"><div class="im"><img src="img/img-008.jpg" alt="White camera case on a lab bench, angled up at an incubator touchscreen"></div><figcaption><b>On a lab bench</b>About 22 cm from a 7-inch controller, tilted to frame the whole screen.</figcaption></figure>
+    <figure class="b"><div class="im"><img src="img/img-009.jpg" alt="Two growth chambers, each with a small white camera on a gooseneck arm in front of the controller"></div><figcaption><b>At a growth chamber</b>A magnetic gooseneck holds the camera about 19 cm in front of the controller.</figcaption></figure>
+    <figure class="c"><div class="im"><img src="img/img-007.jpg" alt="Two white camera cases on base plates, one tilted back on its hinge"></div><figcaption><b>Current case</b>Tilt hinge with a bolt, base plate, USB-C on top.</figcaption></figure>
+    <figure class="c"><div class="im"><img src="img/img-011.jpg" alt="Proposed small white camera case with a round lens window, alone and on a magnetic stand"></div><figcaption><b>Next: a smaller case</b>About 25 × 30 × 19 mm, with a status light and a magnetic stand.</figcaption></figure>
+    <figure class="c"><div class="im"><img src="img/img-012.jpg" alt="Exploded view of the proposed case and its parts"></div><figcaption><b>Inside</b>An ESP32-S3 board and a small camera module, held by two M2 screws.</figcaption></figure>
+  </div>
 </div></section>
 
-<!-- 7. Use cases -->
-<section class="alt"><div class="wrap">
- <div class="head"><div><div class="label kicker">Use cases</div><h2 class="display">What factories use it for</h2></div></div>
- <div class="uc">
-  <div class="card"><div class="ic" style="color:var(--color-idle)" id="u1"></div><h3>Find hidden downtime</h3><div class="muted">See when and why machines stop, by shift and by machine.</div></div>
-  <div class="card"><div class="ic" style="color:var(--color-warning)" id="u2"></div><h3>Catch faults early</h3><div class="muted">A change in sound or power is a warning. Fix it before it stops the line.</div></div>
-  <div class="card"><div class="ic" style="color:var(--color-running)" id="u3"></div><h3>Cut energy waste</h3><div class="muted">Find machines left on. Run AC and compressors only when needed.</div></div>
-  <div class="card"><div class="ic" style="color:var(--color-muted)" id="u4"></div><h3>Shift reports without paper</h3><div class="muted">The AI writes the shift summary from the machine data.</div></div>
- </div>
+<section id="insights"><div class="wrap ins">
+  <img class="phone" src="img/s7-insights.png" alt="Phone screen: Insights, with three suggestion cards">
+  <div>
+    <p class="eyebrow">AI suggestions</p>
+    <h2 class="h2">An assistant that watches every screen for you.</h2>
+    <p class="lead" style="margin-top:14px">Each card names the machine, the likely cause and one action. It can catch a warning that only ever showed on the machine's own screen.</p>
+    <div class="flow">
+      <div class="node"><b>Screen readings</b><span>values the cameras read every few seconds, including alarm text and warnings on the screen</span></div>
+      <div class="node"><b>Site history</b><span>30 or more days for each machine, by program and shift</span></div>
+      <div class="node hi"><b>AI review</b><span>compares now with normal: drift, stops that nobody logged, idle time, repeat alarms</span></div>
+      <div class="node"><b>Suggestion card</b><span>the issue, its likely cause and one action</span></div>
+    </div>
+    <p class="cap">Example data</p>
+  </div>
 </div></section>
 
-<!-- 8. Pricing -->
-<section id="pricing"><div class="wrap">
- <div class="head"><div><div class="label kicker">Pricing</div><h2 class="display">Start small.<br>Grow when you are ready.</h2></div>
- <p class="muted">The first step is small: one cheap device on one machine. Prices will be in pounds. We are still setting them. Join the waitlist and we will tell you first.</p></div>
- <div class="price">
-  <div class="card mid"><div class="label" style="color:var(--color-accent)">Starter<span class="tag">Start here</span></div><div class="tbc display">Price to come</div><div class="muted">One cheap device on one machine.</div>
-   <ul><li>Any smart plug, new or one you already have</li><li>Start with one machine</li><li>Daily AI check</li><li>Ask AI chat</li><li>Phone floor plan scan</li></ul>
-   <a href="#start" class="btn primary" style="margin-top:auto">Join the waitlist</a></div>
-  <div class="card"><div class="label">Pro</div><div class="tbc display">Price to come</div><div class="muted">More sensors for more reliable checks.</div>
-   <ul><li>Everything in Starter</li><li>More machines and areas</li><li>Power and temperature sensors</li><li>Microphones for sound checks</li><li>Cameras that read machine screens</li></ul>
-   <a href="#start" class="btn ghost" style="margin-top:auto">Book a demo</a></div>
-  <div class="card"><div class="label">Custom</div><div class="tbc display">Price to come</div><div class="muted">Consultancy. We design and fit it for you.</div>
-   <ul><li>Everything in Pro</li><li>A site visit and a plan for your machines</li><li>Sensors designed for your machines</li><li>ESP32 controllers, designed and fitted</li><li>USB and machine log connections</li></ul>
-   <a href="#start" class="btn ghost" style="margin-top:auto">Book a demo</a></div>
- </div>
- <div style="margin-top:16px;display:flex;justify-content:flex-end"><span class="ex">Draft plan contents · to be confirmed</span></div>
+<section id="lab"><div class="wrap lab">
+  <div>
+    <p class="eyebrow">Not a factory?</p>
+    <h2 class="h2">One device is enough to start.</h2>
+    <p class="lead" style="margin-top:14px">A lab that wants one centrifuge on record can skip the layout. Describe it, point a camera at its display, and the app logs every run. Add more devices, or a whole site, later.</p>
+  </div>
+  <div class="phones"><img src="img/sa-describe.png" alt="Phone screen: What do you want to monitor? Single device"><img src="img/sc-live.png" alt="Phone screen: Centrifuge 1 live view"></div>
 </div></section>
 
-<!-- 8b. Privacy & data -->
-<section id="privacy" class="alt"><div class="wrap">
- <div class="head"><div><div class="label kicker">Privacy &amp; data</div><h2 class="display">Your data belongs to you.</h2></div>
- <p class="muted">Here is what we collect and what we do with it, in plain words.</p></div>
- <div class="g4">
-  <div class="card"><h3>What we collect</h3><div class="muted">Readings from the devices you connect, such as power, temperature and sound. Machine logs and screen images, if you connect them. Your name and work email.</div></div>
-  <div class="card"><h3>You own it</h3><div class="muted">Your factory data belongs to you. We use it to run AI Factory Manager for you: your checks, alerts and answers.</div></div>
-  <div class="card"><h3>We do not sell it</h3><div class="muted">We do not sell your data. We do not give it to advertisers.</div></div>
-  <div class="card"><h3>You stay in control</h3><div class="muted">You choose which machines and devices to connect. Unplug a device and it stops sending data.</div></div>
- </div>
- <p class="faint" style="margin:20px 0 0;font-size:14px">We will publish our full privacy policy before launch.</p>
+<section id="plans"><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">Plans</p><h2 class="h2">Every plan gets the layout. Higher plans draw it in more detail.</h2><p>The AI setup and the first dashboard are free. Plans are a concept and can change.</p></div>
+  <div class="tiers">
+    <div class="card tier"><div class="thumb"><img src="img/tier-free.png" alt="Machine tiles view"></div><div class="body"><span class="view">Machine tiles</span><h3>Free</h3><div class="price">Up to 3 machines · example plan</div>
+      <ul><li>Dashboard built by the AI</li><li>Live view for each machine</li><li>30 days of history</li><li>Automatic recalibration</li></ul>
+      <a class="btn ghost" href="#join">Join the waitlist</a></div></div>
+    <div class="card tier pro"><div class="thumb"><img src="img/tier-pro.png" alt="2D floor plan view"></div><div class="body"><span class="view">2D floor plan</span><h3>Pro</h3><div class="price">Price to come</div>
+      <ul><li>Top-down plan of your floor</li><li>Any number of machines</li><li>Full history</li><li>Alerts and shift reports</li><li>AI analysis of trends and downtime</li></ul>
+      <a class="btn primary" href="#join">Book a demo</a></div></div>
+    <div class="card tier"><div class="thumb"><img src="img/tier-business.png" alt="3D site model view"></div><div class="body"><span class="view">3D model</span><h3>Business</h3><div class="price">Price to come</div>
+      <ul><li>3D model of the site you can rotate</li><li>API and connectors (MQTT, OPC UA, ERP/MES)</li><li>Audit trails for labs and food safety</li><li>More than one site, single sign-on</li></ul>
+      <a class="btn ghost" href="#join">Book a demo</a></div></div>
+  </div>
+  <div class="offer">
+    <div><b>Start with one machine</b><span>One camera on one screen. See your first live numbers in an afternoon.</span></div>
+    <div><b>Nothing to wire</b><span>The camera does not connect to the machine. Remove it and nothing changes.</span></div>
+    <div><b>Recalibration is included</b><span>If a screen layout changes, the camera maps it again, on every plan.</span></div>
+  </div>
 </div></section>
 
-<!-- 9. Demo / waitlist -->
-<section id="start"><div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:56px;align-items:start">
- <div><div class="label kicker">Get started</div><h2 class="display">See it on your own floor.</h2>
-  <p class="muted" style="font-size:17px;margin:18px 0 0">Book a demo and we will show you the AI with example data, then talk about your machines. Or join the waitlist to hear when it is ready.</p></div>
- <div class="card" style="padding:28px"><div class="form">
-  <div class="field full"><span class="ex">Example form · not live</span></div><div class="field"><label>Name</label><div class="in">Your name</div></div>
-  <div class="field"><label>Work email</label><div class="in">you@company.co.uk</div></div>
-  <div class="field"><label>Company</label><div class="in">Company name</div></div>
-  <div class="field"><label>Number of machines</label><div class="in" style="justify-content:space-between">Choose <span>▾</span></div></div>
-  <div class="field full"><label>Which is your worst machine? <span class="faint" style="font-weight:400">(optional)</span></label><div class="in" style="height:86px;align-items:flex-start;padding-top:12px">For example: the old compressor that keeps stopping</div></div>
-  <div class="field full ctas" style="margin-top:4px"><span class="btn primary big" style="flex:1">Book a demo</span><span class="btn ghost big" style="flex:1">Join the waitlist</span></div>
- </div></div>
+<section id="privacy"><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">Privacy &amp; data</p><h2 class="h2">What the camera sees, and what we keep.</h2></div>
+  <div class="priv">
+    <div class="card"><h3>The camera sees only the screen</h3><p>You point it at a display or gauge. It does not connect to the machine or its controller.</p></div>
+    <div class="card"><h3>You choose what is read</h3><p>The AI suggests values. You tick the ones to log.</p></div>
+    <div class="card"><h3>You can check every number</h3><p>Each reading keeps the frame it came from and a confidence score.</p></div>
+    <div class="card"><h3>Where your data is stored</h3><p>We will confirm this before launch. Ask us about it in your demo.</p></div>
+  </div>
 </div></section>
 
-<!-- 10. Footer -->
-<footer><div class="wrap"><div class="fgrid">
- <div style="max-width:320px"><img src="./brand/logo/b-scan/lockup-horizontal-dark.png" alt="AI Factory Manager" style="height:30px"><p class="muted" style="margin:14px 0 0">An AI that looks after your factory.</p></div>
- <div class="col"><div class="label" style="margin-bottom:12px">Product</div><a href="#how">How it works</a><a href="#features">Features</a><a href="#hardware">Hardware</a><a href="#pricing">Pricing</a></div>
- <div class="col"><div class="label" style="margin-bottom:12px">Get started</div><a href="./demo/">See the demo</a><a href="#start">Book a demo</a><a href="#start">Join the waitlist</a></div>
- <div class="col"><div class="label" style="margin-bottom:12px">Company</div><a href="#privacy">Privacy &amp; data</a></div>
- <div style="margin-left:auto" class="faint">All screens show example data.<br>Not a real factory.</div>
-</div></div></footer>
+<section id="join"><div class="wrap">
+  <div class="cta">
+    <div><h2 class="h2">See PanelPal on your own screens.</h2><p class="lead" style="margin-top:14px">Book a short demo, or join the waitlist and we will tell you when it is ready.</p>
+      <div class="ctas" style="margin-top:24px"><a class="btn primary" href="#join">Book a demo</a><a class="link" href="./demo/">Try the demo →</a></div></div>
+    <form class="wl" onsubmit="return false" aria-label="Join the waitlist (example form, not live)">
+      <label>Work email<input type="email" placeholder="you@example.com"></label>
+      <label>What do you want to monitor?<select><option>A factory floor</option><option>A lab</option><option>A kitchen</option><option>One device</option><option>Something else</option></select></label>
+      <button class="btn primary" type="submit">Join the waitlist</button>
+      <span class="fine"><b>Example form · not live.</b> This form does not send anything.</span>
+    </form>
+  </div>
+</div></section>
+</main>
 
-<script>
-const mob=window.innerWidth<=640;
-document.getElementById('chat').innerHTML=`<div class="bubble-me" style="font-size:14px">What’s wrong with the CNC Lathe? It sounds rough.</div>
-<div class="ai-row"><img src="./brand/logo/b-scan/mark.png" class="hide-m"><div style="flex:1;min-width:0">${answer(mob?'sm':'md')}</div></div>`;
-const S=p=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
-const I={
- stop:S('<rect x="7" y="5" width="3.5" height="14"/><rect x="13.5" y="5" width="3.5" height="14"/>'),
- warn:S('<path d="M12 3 22 20H2z"/><path d="M12 10v4M12 17v.5"/>'),
- bolt:S('<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>'),
- check:S('<rect x="4" y="3" width="16" height="18" rx="2"/><path d="m8 12 3 3 5-6"/>'),
- bell:S('<path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/>'),
- chat:S('<path d="M4 5h16v11H9l-5 4z"/>'),
- cam:S('<rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M9 7l1.5-3h3L15 7"/>'),
- auto:S('<path d="M4 12a8 8 0 0 1 14-5.3L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 0 1-14 5.3L4 15"/><path d="M4 20v-5h5"/>'),
- plug:S('<path d="M9 3v5M15 3v5"/><path d="M6 8h12v4a6 6 0 0 1-12 0z"/><path d="M12 18v3"/>'),
- temp:S('<path d="M10 14V5a2 2 0 0 1 4 0v9a4 4 0 1 1-4 0z"/>'),
- mic:S('<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>'),
- chip:S('<rect x="6" y="6" width="12" height="12" rx="1.5"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>'),
- doc:S('<path d="M6 3h8l4 4v14H6z"/><path d="M9 12h6M9 16h6"/>'),
- clamp:S('<path d="M12 3v6"/><circle cx="12" cy="14" r="5"/><path d="M12 12v2l1.5 1.5"/>'),
-};
-const set={i1:'stop',i2:'warn',i3:'bolt',f1:'check',f2:'bell',f3:'chat',f4:'cam',f5:'auto',f6:'plug',h1:'plug',h2:'temp',h3:'clamp',h4:'mic',h5:'cam',h6:'chip',u1:'stop',u2:'warn',u3:'bolt',u4:'doc'};
-for(const[k,v]of Object.entries(set))document.getElementById(k).innerHTML=I[v];
-</script>
-</body></html>
+<footer><div class="wrap">
+  <img src="brand/logo-light.svg" alt="PanelPal">
+  <span>Concept demo · example data</span>
+  <span class="sp"></span>
+  <a href="#privacy">Privacy &amp; data</a><a href="./demo/">Try the demo</a>
+</div></footer>
+</body>
+</html>
