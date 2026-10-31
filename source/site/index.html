@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>PanelPal · the everything sensor (demo)</title>
+<meta name="description" content="Point a small camera at any machine screen or gauge. PanelPal's AI builds a live dashboard for your site. Demo with example data.">
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="brand/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="site.css">
+<style>.hw .c2{grid-column:span 6;justify-self:center;width:calc(50% - 10px)}@media (max-width:760px){.hw .c2{grid-column:span 2;width:calc(50% - 7px)}}</style>
+<style>.planned{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;border:1px dashed currentColor;font-size:11px;font-weight:600;line-height:16px;vertical-align:2px;opacity:.75;white-space:nowrap}</style>
+</head>
+<body>
+<div class="banner"><b>Demo · example data.</b> All machines, names and numbers on this page are examples.</div>
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#top"><img src="brand/logo-light.svg" alt="PanelPal"></a>
+  <nav><a href="#how">How it works</a><a href="#reads">What it reads</a><a href="#camera">The camera</a><a href="#plans">Plans</a><a href="#privacy">Privacy &amp; data</a></nav>
+  <span class="sp"></span>
+  <a class="link hide-m" href="http://localhost:5190/">Try the demo</a>
+  <a class="btn primary sm" href="#join">Book a demo</a>
+</div></header>
+
+<main id="top">
+<section class="first"><div class="wrap hero">
+  <div>
+    <p class="eyebrow">The everything sensor</p>
+    <h1>Your machines already show their numbers. <em>PanelPal reads them.</em></h1>
+    <p class="lead">Point a small camera at any screen or gauge. Our AI builds a live dashboard for your site. No wiring and no engineer.</p>
+    <div class="ctas">
+      <a class="btn primary" href="#join">Book a demo</a>
+      <a class="btn soft" href="#join">Book a demo</a>
+      <a class="link" href="http://localhost:5190/">Try the demo →</a>
+    </div>
+    <div class="where"><span>Machine shops</span><span>Labs</span><span>Kitchens</span><span>Growth rooms</span><span>Plant rooms</span><span>Any site with a screen or gauge</span></div>
+  </div>
+  <div class="hero-art">
+    <img class="cam" src="img/cnc-hmi-camera-clean.png" alt="Camera view of a CNC mill operator screen. Spindle speed, spindle load, parts today and alarm are each boxed. Example data.">
+    <img class="phone" src="img/s6-logging.png" alt="Phone screen: a machine logging live, with speed, load, parts and uptime.">
+    <span class="pill ex tag">Example data</span>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">How it works</p><h2 class="h2">The AI does the setup. Cameras feed the dashboard.</h2><p>The AI does the work of a controls engineer: it finds what is on your floor, what to measure and how to show it.</p></div>
+  <div class="steps">
+    <div class="card step"><div class="n">1</div><h3>Describe your site</h3><p>Type a sentence. Add a floor plan or a few photos if you like. The AI finds and names your machines.</p><div class="shot"><img src="img/s1-describe.png" alt="Phone screen: Tell us about your site"></div></div>
+    <div class="card step"><div class="n">2</div><h3>Get a dashboard</h3><p>The AI suggests what to track on each machine and builds the dashboard. Change it by asking in plain English.</p><div class="shot"><img src="img/s2-generating.png" alt="Phone screen: Building your dashboard, 60% done"></div></div>
+    <div class="card step"><div class="n">3</div><h3>Feed it with cameras</h3><p>Put a small camera in front of each screen or gauge. It reads the values every few seconds.</p><div class="shot"><img src="img/s5-identify.png" alt="Phone screen: identify the machine and choose values to log"></div></div>
+  </div>
+  <div class="card pipe" aria-label="Pipeline from site description to live dashboard">
+    <div class="lbl">Set up: you describe the site, the AI builds the rest</div>
+    <div class="node"><b>Describe it</b><span>words, a floor plan or photos of the floor</span></div>
+    <div class="node hi"><b>AI site model</b><span>finds each machine, picks the values to track, plans where cameras go</span></div>
+    <div class="node end"><b>Your dashboard</b><span>layout and data model, edit it in plain English, alerts and reports</span></div>
+    <div class="lbl">Feed: cameras read each machine's own screen</div>
+    <div class="node"><b>Target cost about $10</b><span>points at a screen or gauge, no wiring</span></div>
+    <div class="node"><b>Vision model maps the screen</b><span>one time per machine, finds and labels each value</span></div>
+    <div class="node end"><b>On-device reading</b><span>reads only the mapped values, every few seconds</span></div>
+  </div>
+</div></section>
+
+<section id="camera"><div class="wrap camsec">
+  <div><div class="frame"><img src="img/camera-view-clean.jpg" alt="Camera view of a growth chamber controller with four boxed values"></div><p class="cap">What the camera sees on a growth room controller · rendered mock-up · example data</p></div>
+  <div>
+    <p class="eyebrow">The camera view</p>
+    <h2 class="h2">Every number comes with its picture.</h2>
+    <ul class="facts">
+      <li><span class="ic">1</span><div><b>The AI marks each value one time</b><span>It puts a box around each value and gives it a name. You confirm the boxes.</span></div></li>
+      <li><span class="ic">2</span><div><b>The camera reads every 2 seconds</b><span>It reads only the boxed values. It does this on the device.</span></div></li>
+      <li><span class="ic">3</span><div><b>Each reading has a confidence score</b><span>A low score tells you to check the reading. If the camera loses the screen, the app shows "No signal". It does not guess.</span></div></li>
+      <li><span class="ic">4</span><div><b>The frame is kept</b><span>You can compare any number with the image it came from.</span></div></li>
+    </ul>
+    <div class="conf"><span style="background:var(--color-cam-high)">30 °C high</span><span style="background:var(--color-cam-mid)">22 °C check</span><span style="background:var(--color-cam-low)">15 °C low</span></div>
+  </div>
+</div></section>
+
+<section id="reads"><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">What it can read</p><h2 class="h2">One camera, many kinds of reading.</h2><p>Each value gets the reader that suits it. The vision model marks the area one time, and you confirm it.</p></div>
+  <table class="tbl">
+    <thead><tr><th>Reader</th><th>Reads</th><th>Examples</th></tr></thead>
+    <tbody>
+      <tr class="built"><td>Digits and text</td><td>Numbers and words on screens</td><td class="ex">Growth chamber and incubator controllers, balances, pH and EC meters, temperature controllers, motor drive displays, old PCs that run instrument software</td></tr>
+      <tr class="built"><td>Dial</td><td>A needle's position on a printed scale</td><td class="ex">Hydraulic, pneumatic and vacuum gauges, CO₂ cylinder regulators, autoclave pressure, liquid nitrogen dewar levels, bimetal thermometers</td></tr>
+      <tr class="built"><td>Counter</td><td>Rolling digit wheels</td><td class="ex">Water, gas and electricity meters, hour meters, mechanical cycle counters</td></tr>
+      <tr class="built"><td>Colour</td><td>A state or a colour index</td><td class="ex">Stack lights and panel LEDs, chamber lights on or off, pH colour change, leaf greenness</td></tr>
+      <tr class="built"><td>Level</td><td>How full something is</td><td class="ex">Sight glasses, hydroponic tanks, carboys, coolant and waste containers</td></tr>
+      <tr class="built"><td>Presence</td><td>Whether something is there</td><td class="ex">A tray on a shelf, a door or guard open, a part in a fixture</td></tr>
+      <tr class="built"><td>Motion</td><td>Running or idle</td><td class="ex">Shakers, stirrers, fans, conveyors, spindles</td></tr>
+      <tr class="built"><td>Count</td><td>How many objects</td><td class="ex">Pots in a tray, parts in a bin</td></tr>
+      <tr class="built"><td>Area</td><td>How much of an area one colour covers</td><td class="ex">Canopy cover per tray, spills, rust</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Colour, level, presence, motion, count and area are simple filters on the same frames. They are indicators, not calibrated measurements, and the app labels them that way.</p>
+</div></section>
+
+<section id="hardware"><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">Camera hardware</p><h2 class="h2">It sits in front of the display. It never touches the machine.</h2><p>These are rendered mock-ups, not photos.</p></div>
+  <div class="hw">
+    <figure class="a"><div class="im"><img src="img/img-008.jpg" alt="Small white cube camera on a round stand on a lab bench, with its lens turned toward an incubator touchscreen"></div><figcaption><b>On a lab bench</b>About 22 cm from a 7-inch controller, tilted to frame the whole screen.</figcaption></figure>
+    <figure class="b"><div class="im"><img src="img/img-009.jpg" alt="Two growth chambers. On each, a small white camera on a gooseneck arm sits above the controller screen and points down at it"></div><figcaption><b>At a growth chamber</b>A magnetic gooseneck holds the camera about 19 cm in front of the controller.</figcaption></figure>
+    <figure class="c c2"><div class="im"><img src="img/img-011.jpg" alt="Small white camera case with a round lens window, alone and on a magnetic stand"></div><figcaption><b>Current case</b>About 25 × 30 × 19 mm, with a status light and a magnetic stand.</figcaption></figure>
+  </div>
+</div></section>
+
+<section id="insights"><div class="wrap ins">
+  <img class="phone" src="img/s7-insights.png" alt="Phone screen: Insights, with three suggestion cards">
+  <div>
+    <p class="eyebrow">AI suggestions</p>
+    <h2 class="h2">An assistant that watches every screen for you.</h2>
+    <p class="lead" style="margin-top:14px">Each card names the machine, the likely cause and one action. It can catch a warning that only ever showed on the machine's own screen.</p>
+    <div class="flow">
+      <div class="node"><b>Screen readings</b><span>values the cameras read every few seconds, including alarm text and warnings on the screen</span></div>
+      <div class="node"><b>Site history</b><span>30 or more days for each machine, by program and shift</span></div>
+      <div class="node hi"><b>AI review</b><span>compares now with normal: drift, stops that nobody logged, idle time, repeat alarms</span></div>
+      <div class="node"><b>Suggestion card</b><span>the issue, its likely cause and one action</span></div>
+    </div>
+    <p class="cap">Example data</p>
+  </div>
+</div></section>
+
+<section id="lab"><div class="wrap lab">
+  <div>
+    <p class="eyebrow">Not a factory?</p>
+    <h2 class="h2">One device is enough to start.</h2>
+    <p class="lead" style="margin-top:14px">A lab that wants one centrifuge on record can skip the layout. Describe it, point a camera at its display, and the app logs every run. Add more devices, or a whole site, later.</p>
+  </div>
+  <div class="phones"><img src="img/sa-describe.png" alt="Phone screen: What do you want to monitor? Single device"><img src="img/sc-live.png" alt="Phone screen: Centrifuge 1 live view"></div>
+</div></section>
+
+<section id="plans"><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">Plans</p><h2 class="h2">Every plan gets the layout. Higher plans draw it in more detail.</h2><p>The AI setup and the first dashboard are free. Plans can change.</p></div>
+  <div class="tiers">
+    <div class="card tier"><div class="thumb"><img src="img/tier-free.png" alt="Machine tiles view"></div><div class="body"><span class="view">Machine tiles</span><h3>Free</h3><div class="price">Up to 3 machines · example plan</div>
+      <ul><li>Dashboard built by the AI</li><li>Live view for each machine</li><li>30 days of history <span class="planned">Planned</span></li><li>Automatic recalibration <span class="planned">Planned</span></li></ul>
+      <a class="btn ghost" href="#join">Book a demo</a></div></div>
+    <div class="card tier pro"><div class="thumb"><img src="img/tier-pro.png" alt="2D floor plan view"></div><div class="body"><span class="view">2D floor plan</span><h3>Pro</h3><div class="price">Price to come</div>
+      <ul><li>Top-down plan of your floor</li><li>Any number of machines</li><li>Full history</li><li>Alerts and shift reports <span class="planned">Planned</span></li><li>AI analysis of trends and downtime <span class="planned">Planned</span></li></ul>
+      <a class="btn primary" href="#join">Book a demo</a></div></div>
+    <div class="card tier"><div class="thumb"><img src="img/tier-business.png" alt="3D site model view"></div><div class="body"><span class="view">3D model</span><h3>Business</h3><div class="price">Price to come</div>
+      <ul><li>3D model of the site you can rotate <span class="planned">Planned</span></li><li>API and connectors (MQTT, OPC UA, ERP/MES) <span class="planned">Planned</span></li><li>Audit trails for labs and food safety <span class="planned">Planned</span></li><li>More than one site, single sign-on <span class="planned">Planned</span></li></ul>
+      <a class="btn ghost" href="#join">Book a demo</a></div></div>
+  </div>
+  <div class="offer">
+    <div><b>Start with one machine <span class="planned">Planned</span></b><span>One camera on one screen. See your first live numbers in an afternoon.</span></div>
+    <div><b>Nothing to wire <span class="planned">Planned</span></b><span>The camera does not connect to the machine. Remove it and nothing changes.</span></div>
+    <div><b>Recalibration is included <span class="planned">Planned</span></b><span>If a screen layout changes, the camera maps it again, on every plan.</span></div>
+  </div>
+</div></section>
+
+<section id="privacy"><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">Privacy &amp; data</p><h2 class="h2">What the camera sees, and what we keep.</h2></div>
+  <div class="priv">
+    <div class="card"><h3>The camera sees only the screen</h3><p>You point it at a display or gauge. It does not connect to the machine or its controller.</p></div>
+    <div class="card"><h3>You choose what is read <span class="planned">Planned</span></h3><p>The AI suggests values. You tick the ones to log.</p></div>
+    <div class="card"><h3>You can check every number <span class="planned">Planned</span></h3><p>Each reading keeps the frame it came from and a confidence score.</p></div>
+    <div class="card"><h3>Where your data is stored</h3><p>We will confirm this before launch. Ask us about it in your demo.</p></div>
+  </div>
+</div></section>
+
+<section id="join"><div class="wrap">
+  <div class="cta">
+    <div><h2 class="h2">See PanelPal on your own screens.</h2><p class="lead" style="margin-top:14px">Book a short demo. Send us an email and we will reply.</p>
+      <div class="ctas" style="margin-top:24px"><a class="btn primary" href="#join">Book a demo</a><a class="link" href="http://localhost:5190/">Try the demo →</a></div></div>
+    <form class="wl" id="join-form" action="mailto:contact@panelpal.co.uk?subject=PanelPal%20demo%20request" method="post" enctype="text/plain" aria-label="Book a demo by email">
+      <label>Work email<input type="email" name="Work email" placeholder="you@example.com" required></label>
+      <label>What do you want to monitor?<select name="What do you want to monitor?"><option>A factory floor</option><option>A lab</option><option>A kitchen</option><option>One device</option><option>Something else</option></select></label>
+      <button class="btn primary" type="submit">Book a demo</button>
+      <span class="fine">This opens your email app with a message to <a href="mailto:contact@panelpal.co.uk">contact@panelpal.co.uk</a>. Nothing goes out until you send it.</span>
+    </form>
+    <script>document.getElementById("join-form").addEventListener("submit",function(e){e.preventDefault();var f=e.currentTarget,l=[];f.querySelectorAll("label").forEach(function(x){var c=x.querySelector("input,select,textarea");if(c)l.push(x.firstChild.textContent.trim()+": "+c.value.trim())});location.href="mailto:contact@panelpal.co.uk?subject="+encodeURIComponent("PanelPal demo request")+"&body="+encodeURIComponent(l.join("\r\n"))})</script>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <img src="brand/logo-light.svg" alt="PanelPal">
+  <span>Demo · example data</span>
+  <span class="sp"></span>
+  <a href="#privacy">Privacy &amp; data</a><a href="http://localhost:5190/">Try the demo</a>
+</div></footer>
+</body>
+</html>

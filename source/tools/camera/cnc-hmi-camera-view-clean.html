@@ -1,0 +1,77 @@
+<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><title>CNC HMI camera view · example data</title>
+<!-- Copy of design/screens/src/cnc-hmi-camera-view.html with no text over the camera image (no labels, no chips). Demo. Generic CNC operator panel seen by the PanelPal camera. No real brand. All values are EXAMPLE DATA. Render at 1600x1000. -->
+<link rel="stylesheet" href="../../design/tokens.css">
+<style>
+*{box-sizing:border-box}html,body{margin:0}
+body{width:1600px;height:1000px;overflow:hidden;font-family:var(--font-sans);background:#1a1c1e}
+.scene{position:absolute;inset:0;overflow:hidden;
+ background:
+  radial-gradient(120% 90% at 30% 20%,#4a4e52 0%,#2d3034 45%,#17191b 100%)}
+/* machine enclosure sheet metal + seam */
+.scene::before{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0 2px,transparent 2px 7px),
+  linear-gradient(180deg,transparent 0 92%,rgba(0,0,0,.35) 92% 92.4%,transparent 92.4%)}
+.persp{position:absolute;left:150px;top:110px;width:1300px;height:860px;perspective:2200px;filter:blur(.5px) saturate(.92)}
+.housing{position:absolute;inset:0;border-radius:26px;background:linear-gradient(160deg,#3b3f44,#24272b 60%,#1b1d20);
+ box-shadow:0 40px 80px rgba(0,0,0,.55),inset 0 2px 0 rgba(255,255,255,.12),inset 0 -3px 0 rgba(0,0,0,.4);
+ transform:rotateY(-9deg) rotateX(4deg) rotateZ(-.6deg);transform-origin:50% 50%;padding:34px 34px 0}
+.screw{position:absolute;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#9aa0a6,#3a3d41);box-shadow:0 1px 1px #000}
+.screen{position:relative;height:640px;border-radius:8px;background:#0a1016;border:10px solid #111417;box-shadow:inset 0 0 0 1px #000,inset 0 0 60px rgba(0,0,0,.8);overflow:hidden;color:#cfe3f2;font-family:"JetBrains Mono","IBM Plex Mono",monospace}
+.hdr{height:54px;display:flex;align-items:center;gap:22px;padding:0 22px;background:linear-gradient(#1d3a55,#152c42);font-size:21px;letter-spacing:.04em;color:#e6f2fb}
+.hdr .sp{flex:1}.hdr .auto{background:#1f7a3a;color:#eaffef;padding:4px 12px;border-radius:3px;font-weight:600}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:22px}
+.cell{position:relative;background:#101a24;border:1px solid #23384b;border-radius:4px;padding:16px 20px 18px;height:224px}
+.cell .k{font-size:20px;color:#7fa6c4;letter-spacing:.06em}
+.cell .v{font-size:84px;font-weight:600;color:#f2f7fb;line-height:1.05;margin-top:16px;font-variant-numeric:tabular-nums;text-shadow:0 0 18px rgba(140,200,255,.25)}
+.cell .v small{font-size:34px;color:#9cc1dd;margin-left:10px;font-weight:500}
+.cell .v.ok{color:#7ee08f;text-shadow:0 0 18px rgba(120,230,140,.25)}
+.cell .sub{font-size:18px;color:#5f819c;margin-top:22px}
+.bar{height:12px;background:#1b2b3a;border-radius:2px;margin-top:26px;overflow:hidden}.bar b{display:block;height:100%;width:42%;background:linear-gradient(90deg,#2a78d6,#58a6ff)}
+.foot{position:absolute;left:0;right:0;bottom:0;height:46px;display:flex;align-items:center;gap:26px;padding:0 22px;background:#0e1822;border-top:1px solid #23384b;font-size:18px;color:#6f93ae}
+/* camera reading overlay (drawn by PanelPal) */
+.box{position:absolute;border:4px solid var(--color-cam-box);border-radius:6px;box-shadow:0 0 0 2px rgba(0,0,0,.25)}
+.lab{position:absolute;left:-4px;top:-50px;display:flex;gap:0;font:600 26px/1 var(--font-sans);white-space:nowrap}
+.lab span{padding:9px 11px;color:#fff}
+.lab .n{background:var(--color-cam-box);border-radius:6px 0 0 0}
+.lab .c{background:var(--color-cam-high);font-family:"JetBrains Mono","IBM Plex Mono",monospace;border-radius:0 6px 0 0}
+.lab .c.mid{background:var(--color-cam-mid)}
+.keys{display:flex;gap:16px;padding:22px 6px 0}
+.key{flex:1;height:58px;border-radius:8px;background:linear-gradient(#4a4f55,#2c2f33);box-shadow:0 4px 0 #15171a,inset 0 1px 0 rgba(255,255,255,.15);color:#c9cdd1;font:600 18px/58px var(--font-sans);text-align:center;letter-spacing:.05em}
+.key.g{background:linear-gradient(#2f8a46,#1e5c2f)}.key.r{background:linear-gradient(#b8332b,#7d1f1a);flex:.6;border-radius:50%;height:70px;width:70px;flex:none;margin-top:-6px}
+.glare{position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.07) 42%,transparent 55%);pointer-events:none}
+/* photo feel */
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse 75% 70% at 50% 48%,transparent 55%,rgba(0,0,0,.6) 100%);pointer-events:none}
+.grain{position:absolute;inset:0;opacity:.16;mix-blend-mode:overlay;pointer-events:none}
+.tint{position:absolute;inset:0;background:rgba(40,70,90,.06);mix-blend-mode:multiply}
+/* UI overlay chips */
+.live{position:absolute;left:34px;top:30px;display:flex;align-items:center;gap:12px;background:var(--color-cam-scrim);background:rgba(20,22,26,.78);color:#fff;font:600 46px/1 var(--font-sans);padding:18px 28px;border-radius:999px}
+.live i{width:22px;height:22px;border-radius:50%;background:var(--color-cam-live);box-shadow:0 0 0 5px rgba(229,55,42,.25)}
+.cam-id{position:absolute;right:34px;top:30px;background:rgba(20,22,26,.78);color:#d7dde2;font:500 36px/1 "JetBrains Mono","IBM Plex Mono",monospace;padding:18px 22px;border-radius:10px}
+.ex{position:absolute;right:34px;bottom:30px;background:var(--color-warning-soft);color:var(--color-warning);font:600 46px/1 var(--font-sans);padding:18px 30px;border-radius:999px}
+</style></head><body>
+<div class="scene">
+ <div class="persp"><div class="housing">
+  <span class="screw" style="left:12px;top:12px"></span><span class="screw" style="right:12px;top:12px"></span>
+  <div class="screen">
+   <div class="hdr"><span>MILL 3</span><span>PROG O1042</span><span>TOOL T4</span><span class="sp"></span><span>10:42</span><span class="auto">AUTO</span></div>
+   <div class="grid">
+    <div class="cell"><div class="k">SPINDLE SPEED</div><div class="v">8,000<small>rpm</small></div><div class="sub">CMD 8,000 · OVR 100%</div>
+      <div class="box" style="left:8px;top:54px;width:450px;height:104px"></div></div>
+    <div class="cell"><div class="k">SPINDLE LOAD</div><div class="v">42<small>%</small></div><div class="bar"><b></b></div>
+      <div class="box" style="left:8px;top:54px;width:240px;height:104px"></div></div>
+    <div class="cell"><div class="k">PARTS TODAY</div><div class="v">312</div><div class="sub">TARGET 480 · CYCLE 01:52</div>
+      <div class="box" style="left:8px;top:54px;width:200px;height:104px"></div></div>
+    <div class="cell"><div class="k">ALARM</div><div class="v ok" style="font-size:72px">NONE</div><div class="sub">LAST: COOLANT LOW · 08:15</div>
+      <div class="box" style="left:8px;top:58px;width:250px;height:104px"></div></div>
+   </div>
+   <div class="foot"><span>FEED 1,250 mm/min</span><span>X 112.40</span><span>Y −36.85</span><span>Z −4.20</span><span>COOLANT ON</span></div>
+   <div class="glare"></div>
+  </div>
+  <div class="keys"><span class="key g">CYCLE START</span><span class="key">FEED HOLD</span><span class="key">RESET</span><span class="key">JOG</span><span class="key">MDI</span><span class="key r"></span></div>
+ </div></div>
+ <svg class="grain" width="1600" height="1000"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+ <div class="tint"></div><div class="vig"></div>
+ 
+ 
+ 
+</div></body></html>

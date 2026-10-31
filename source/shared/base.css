@@ -1,0 +1,5 @@
+/* Shared base styles. Uses only theme tokens. */
+html { color: var(--color-text); background: var(--color-bg); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+.reading, .tnum { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+.font-display { font-weight: 400; letter-spacing: -0.01em; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }

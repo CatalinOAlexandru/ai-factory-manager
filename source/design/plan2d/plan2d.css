@@ -1,0 +1,106 @@
+/* PanelPal 2D floor plan. Class-driven; colours arrive as --pp-* variables set from shared/viz-tokens.ts.
+   Status colours are set inline from viz-tokens; Build can override any class. Light theme only. */
+.pp-plan { display: block; width: 100%; height: auto; font-family: var(--pp-font-sans, var(--font-sans, Inter, system-ui, sans-serif)); user-select: none; -webkit-tap-highlight-color: transparent; }
+.pp-plan text { font-family: inherit; }
+.pp-ground { fill: var(--pp-ground); }
+.pp-floor { fill: var(--pp-floor); }
+.pp-apron { fill: var(--pp-apron); }
+.pp-bumper { fill: #1f2328; }
+
+/* zones */
+.pp-zone { stroke-width: 0.06; stroke-dasharray: 0.3 0.18; transition: opacity .2s; }
+.pp-zone.is-faded, .pp-zone-label.is-faded { opacity: 0.35; }
+.pp-zone-text { font-weight: 600; letter-spacing: 0.06em; paint-order: stroke; stroke: rgba(255,255,255,.9); stroke-width: 0.14; stroke-linejoin: round; }
+.pp-zone-num { fill: #fff; font-weight: 700; }
+
+/* walkways + loading bay */
+.pp-walkway-fill { fill: var(--pp-walkway-fill); }
+.pp-walkway-line { stroke: var(--pp-walkway); stroke-width: 0.1; }
+.pp-loading-fill { fill: #fdf6d8; }
+.pp-flow { fill: none; stroke: var(--pp-accent); stroke-width: 0.09; stroke-dasharray: 0.5 0.35; opacity: 0.75; }
+
+/* walls (poché) and doors */
+.pp-wall { stroke: var(--pp-wall); stroke-linecap: square; }
+.pp-wall-room { stroke: #6b6c6e; }
+.pp-leaf { stroke: var(--pp-door); stroke-width: 0.06; }
+.pp-swing { fill: none; stroke: var(--pp-door); stroke-width: 0.03; stroke-dasharray: 0.12 0.08; }
+.pp-roller { stroke: var(--pp-door); stroke-width: 0.12; stroke-dasharray: 0.18 0.08; }
+.pp-roller-track { stroke: var(--pp-door); stroke-width: 0.03; opacity: .6; }
+
+/* props + equipment */
+.pp-prop-body { fill: var(--pp-fixture); stroke: var(--pp-fixture-edge); stroke-width: 0.04; }
+.pp-prop-line { stroke: var(--pp-fixture-edge); stroke-width: 0.03; }
+.pp-stock { fill: #d6dbe1; }
+.pp-pallet { fill: #e9dcc4; stroke: #c9b48d; stroke-width: 0.03; }
+.pp-box { fill: #d9c29a; opacity: .7; }
+.pp-stool { fill: #fff; stroke: var(--pp-fixture-edge); stroke-width: 0.04; }
+.pp-screen-off { fill: var(--pp-machine-dark); }
+.pp-equipment { opacity: 0.92; }
+
+/* machine silhouette parts */
+.pp-body { fill: var(--pp-machine); stroke: var(--pp-machine-edge); stroke-width: 0.06; }
+.pp-detail { fill: #eeeeec; stroke: var(--pp-machine-edge); stroke-width: 0.035; }
+.pp-dark { fill: var(--pp-machine-dark); }
+.pp-screen { fill: #6fb3e6; }
+.pp-glass { fill: var(--pp-glass); stroke: #8fb4d6; stroke-width: 0.035; }
+.pp-line { stroke: var(--pp-machine-edge); stroke-width: 0.03; }
+.pp-line-c { fill: none; stroke: #8fb4d6; stroke-width: 0.03; }
+.pp-hatch { fill: url(#pp-hatch); stroke: var(--pp-machine-edge); stroke-width: 0.03; }
+.pp-hatch-line { stroke: #b5b6b2; stroke-width: 0.05; }
+.pp-stop { fill: #d03b3b; }
+.pp-bay { fill: #f7efe2; }
+.pp-screenwall { fill: none; stroke: var(--pp-weld-screen); stroke-linejoin: round; opacity: .9; }
+.pp-lead { fill: none; stroke: var(--pp-machine-dark); stroke-width: 0.05; }
+.pp-arm { stroke: #8e8f8c; stroke-width: 0.12; stroke-linecap: round; }
+.pp-fence { fill: none; stroke: var(--pp-fence); stroke-width: 0.09; }
+.pp-fence-mesh { fill: none; stroke: #1f2328; stroke-width: 0.025; stroke-dasharray: 0.08 0.18; }
+.pp-robot-arm { fill: none; stroke: #e98a1f; stroke-width: 0.32; stroke-linecap: round; stroke-linejoin: round; }
+.pp-accent-dot { fill: var(--pp-accent); }
+.pp-blade { stroke: #8e8f8c; stroke-width: 0.06; }
+.pp-granite { fill: #5d6168; stroke: #3b3f45; stroke-width: 0.04; }
+.pp-belt { fill: #4a4f57; }
+.pp-chevron { fill: none; stroke: #c9cac6; stroke-width: 0.06; }
+.pp-tank { fill: #fff; stroke: var(--pp-machine-edge); stroke-width: 0.05; }
+
+/* machine states */
+.pp-machine { cursor: pointer; outline: none; transition: opacity .2s; }
+.pp-hit { fill: transparent; }
+.pp-halo { opacity: 0.85; }
+.pp-ring { fill: none; stroke-width: 0.14; }
+.pp-sel { fill: none; stroke: transparent; stroke-width: 0.16; }
+.pp-machine.is-selected .pp-sel { stroke: var(--pp-selected); }
+.pp-machine.is-selected .pp-body { stroke: var(--pp-selected); }
+.pp-machine.is-highlight .pp-sel { stroke: #5a9ae6; stroke-dasharray: 0.3 0.18; }
+.pp-machine:focus-visible .pp-sel { stroke: var(--pp-selected); stroke-width: 0.22; }
+.pp-machine:hover .pp-sel { stroke: #5a9ae6; }
+.pp-machine.is-layout .pp-ring { stroke: transparent; }
+.pp-machine.is-notSetUp .pp-sil { opacity: 0.5; }
+.pp-machine.is-notSetUp .pp-body { stroke-dasharray: 0.25 0.15; }
+.pp-machine.is-dimmed, .pp-card.is-dimmed { opacity: 0.25; }
+.pp-machine.is-fault .pp-ring { animation: pp-pulse 1.6s ease-in-out infinite; }
+@keyframes pp-pulse { 50% { stroke-width: 0.3; } }
+@media (prefers-reduced-motion: reduce) { .pp-machine.is-fault .pp-ring { animation: none; } }
+
+/* camera on its clip */
+.pp-cam rect { fill: #fff; stroke: var(--pp-camera); stroke-width: 0.06; }
+.pp-cam circle { fill: var(--pp-camera); }
+.pp-cam.is-planned rect { stroke-dasharray: 0.08 0.06; }
+.pp-cam.is-live rect { fill: var(--pp-camera); stroke: #fff; }
+.pp-cam.is-live circle { fill: #fff; }
+
+/* annotations */
+.pp-annotations { pointer-events: none; }
+.pp-minor { fill: var(--pp-muted); font-weight: 500; letter-spacing: 0.02em; }
+.pp-card-bg { fill: rgba(255,255,255,.94); stroke: #d8d8d4; stroke-width: 0.03; }
+.pp-card.is-selected .pp-card-bg { stroke: var(--pp-selected); stroke-width: 0.07; }
+.pp-card.is-notSetUp .pp-card-name { fill: var(--pp-muted); }
+.pp-card-name { fill: var(--pp-text); font-weight: 600; }
+.pp-badge-word { font-weight: 600; }
+.pp-chip rect { fill: #fff; stroke: #c1c3bc; stroke-width: 0.03; }
+.pp-chip-text { fill: var(--pp-text); font-family: var(--pp-font-mono); font-weight: 600; font-variant-numeric: tabular-nums; }
+.pp-scale-a { fill: #161616; } .pp-scale-b { fill: #fff; }
+.pp-scale-frame { fill: none; stroke: #161616; stroke-width: 0.04; }
+.pp-north path { fill: #161616; }
+.pp-north-ring { fill: #fff; stroke: #161616; stroke-width: 0.05; }
+.pp-example rect { fill: #fdf3dc; } .pp-example text { fill: #8a5a00; font-weight: 600; }
+.pp-plan.is-compact .pp-minor { font-weight: 600; }

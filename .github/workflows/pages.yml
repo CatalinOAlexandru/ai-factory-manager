@@ -1,4 +1,4 @@
-# Upload this static folder to GitHub Pages. No build step.
+# Upload the build/ folder to GitHub Pages. No build step. source/ holds the code that makes build/.
 name: Pages
 
 on:
@@ -26,6 +26,6 @@ jobs:
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:
-          path: .
+          path: build
       - id: deployment
         uses: actions/deploy-pages@v5

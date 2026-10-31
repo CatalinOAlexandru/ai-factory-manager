@@ -1,0 +1,18 @@
+{
+  "_note": "All logo paths in one place. Catalin chose option C (Camera pal) on 30 Oct 2026. Paths are relative to /home/box/team/panelpal. Files are copied into each app's public/brand/; design/ is never edited.",
+  "option": "C (Camera pal) - chosen by Catalin",
+  "files": {
+    "logo-light.svg": "design/logo/c-cam/lockup-horizontal-light.svg",
+    "favicon.svg": "design/logo/c-cam/favicon.svg",
+    "favicon-32.png": "design/logo/c-cam/favicon-32.png",
+    "favicon-16.png": "design/logo/c-cam/favicon-16.png",
+    "apple-touch-icon.png": "design/logo/c-cam/app-icon-180.png"
+  },
+  "_published": "Only the files under 'files' are copied into demo/public/brand and site/public/brand. The build fails if brand/ holds a file that the HTML or JS does not use.",
+  "notPublished": {
+    "logo-dark.svg": "design/logo/c-cam/lockup-horizontal-dark.svg",
+    "mark.svg": "design/logo/c-cam/mark.svg",
+    "mark-dark.svg": "design/logo/c-cam/mark-dark.svg",
+    "app-icon.svg": "design/logo/c-cam/app-icon.svg"
+  }
+}

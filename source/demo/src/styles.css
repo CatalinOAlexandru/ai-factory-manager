@@ -1,0 +1,52 @@
+@import "tailwindcss";
+@import "@pp-theme";
+@import "@pp-base";
+
+@keyframes pp-pulse { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
+@keyframes pp-scan { 0% { transform: translateY(-100%) } 100% { transform: translateY(100%) } }
+@keyframes pp-fadein { from { opacity: 0; transform: translateY(4px) } to { opacity: 1; transform: none } }
+@keyframes pp-ripple { 0% { transform: scale(.6); opacity: .7 } 100% { transform: scale(2.2); opacity: 0 } }
+@keyframes pp-flash { 0% { background: var(--color-accent-soft) } 100% { background: transparent } }
+.pp-pulse { animation: pp-pulse 1.4s ease-in-out infinite; }
+.pp-fade, .pp-fadein { animation: pp-fadein .35s ease-out both; }
+.pp-flash { animation: pp-flash 1.6s ease-out; }
+.pp-ripple { animation: pp-ripple 1.6s ease-out infinite; }
+.pp-scan::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, rgba(47,143,208,.25) 50%, transparent 100%); animation: pp-scan 1.6s linear infinite; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+/* Buttons: one shared style for every step.
+   Can be pressed  -> solid blue (.btn-primary: blue fill; .btn-secondary: white with a solid blue border).
+   Cannot be pressed -> grey, dashed border, not-allowed cursor, aria-disabled="true" (see components/Btn.tsx). */
+.btn-primary, .btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border-radius: var(--radius-card); font-weight: 600; font-size: 14px; padding: 10px 14px; border: 1.5px solid var(--color-accent); cursor: pointer; white-space: nowrap; }
+.btn-primary { background: var(--color-accent); color: var(--color-accent-ink); }
+.btn-primary:hover { background: var(--color-accent-strong); border-color: var(--color-accent-strong); }
+.btn-secondary { background: #fff; color: var(--color-accent-strong); }
+.btn-secondary:hover { background: var(--color-accent-soft); }
+.btn-block { display: flex; width: 100%; font-size: 15px; padding: 13px 16px; }
+.btn-sm { font-size: 12px; padding: 0 10px; height: 30px; border-radius: 8px; }
+.btn-icon { padding: 6px 10px; }
+.btn-primary:disabled, .btn-secondary:disabled, .btn-primary[aria-disabled="true"], .btn-secondary[aria-disabled="true"] {
+  background: var(--color-surface-2); color: var(--color-inactive); border: 1.5px dashed var(--color-border-strong); cursor: not-allowed; }
+.btn-primary:focus-visible, .btn-secondary:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.chip { display: inline-flex; align-items: center; gap: 4px; border-radius: 999px; border: 1px solid var(--color-border-strong); padding: 4px 11px; font-size: 13px; background: #fff; }
+.chip-on { border-color: var(--color-accent); background: var(--color-accent-soft); color: var(--color-text); }
+.field { width: 100%; border-radius: var(--radius-control); border: 1px solid var(--color-border-strong); background: #fff; padding: 9px 11px; font-size: 14px; }
+.label { font-size: 13px; font-weight: 600; color: var(--color-text); }
+
+/* 3D view: OrbitControls sets touch-action:none on its element. Keep one-finger vertical drags for page scroll. */
+.pp-3d, .pp-3d * { touch-action: pan-y !important; }
+
+/* Guided highlight (.guide-pulse, from Btn pulse / usePulse): a soft blue glow that fades in and out.
+   One cycle is --guide-pulse-duration (2.4 s), ease-in-out, no on/off step. Scale stays at 1.015 or less. One highlight per stage.
+   White gap ring first, so it shows on white and on blue. Stops on hover, keyboard focus and press. Never on disabled buttons.
+   Static ring when the user asks for reduced motion. */
+@keyframes guide-pulse {
+  0%, 100% { box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(26, 140, 255, 0.35), 0 0 6px 2px rgba(26, 140, 255, 0.15); transform: scale(1); }
+  50% { box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(26, 140, 255, 0.6), 0 0 12px 4px rgba(26, 140, 255, 0.3); transform: scale(1.015); }
+}
+:root { --guide-pulse-duration: 2.4s; }
+.guide-pulse:not([aria-disabled="true"]):not(:disabled):not(:hover):not(:focus-visible):not(:active) { animation: guide-pulse var(--guide-pulse-duration) ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .guide-pulse:not([aria-disabled="true"]):not(:disabled):not(:hover):not(:focus-visible):not(:active) { animation: none; box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(26, 140, 255, 0.45), 0 0 8px 2px rgba(26, 140, 255, 0.2); }
+}
+

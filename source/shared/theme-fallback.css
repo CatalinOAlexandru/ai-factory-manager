@@ -1,0 +1,24 @@
+/*
+ * PDF-based fallback theme. Used ONLY when design/theme.tailwind.css is missing.
+ * Token names match Factory Design's theme.tailwind.css, so either file can drive the apps.
+ */
+@theme {
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --color-bg: #ffffff; --color-surface: #ffffff; --color-surface-2: #f3f3f2; --color-surface-3: #ededec;
+  --color-border: #d8d8d4; --color-border-strong: #c1c3bc;
+  --color-text: #161616; --color-muted: #5f5f5d; --color-faint: #6a6a68;
+  --color-accent: #2a78d6; --color-accent-strong: #1d5fae; --color-accent-soft: #e5effa; --color-accent-ink: #ffffff;
+  --color-running: #0b7a0b; --color-running-dot: #0ca30c; --color-running-soft: #dbf1db;
+  --color-idle: #6141c9; --color-idle-dot: #7c5ce6; --color-idle-soft: #eee9fc;
+  --color-warning: #8a5a00; --color-warning-dot: #fab219; --color-warning-soft: #fdf3dc;
+  --color-fault: #b42d2d; --color-fault-dot: #d03b3b; --color-fault-soft: #fbf0f0;
+  --color-offline: #5f5f5d; --color-offline-dot: #8e8b8b; --color-offline-soft: #ededec;
+  --color-inactive: #6b6b69; --color-inactive-dot: #c1c3bc; --color-inactive-soft: #f3f3f2;
+  --color-chart-line: #2a78d6; --color-chart-line-2: #0c6992; --color-chart-limit: #d03b3b; --color-chart-grid: #e8e8e6; --color-chart-axis: #6a6a68;
+  --color-cam-box: #2f8fd0; --color-cam-high: #0c6992; --color-cam-mid: #9a6500; --color-cam-low: #b42d2d; --color-cam-label-ink: #ffffff; --color-cam-live: #e5372a; --color-cam-scrim: #1f2328;
+  --color-plan-bg: #ededec; --color-plan-wall: #5f5f5d; --color-plan-machine: #ffffff; --color-plan-machine-stroke: #a6a6a6;
+  --radius-sm: 4px; --radius-control: 8px; --radius-card: 10px; --radius-lg: 16px; --radius-phone: 28px; --radius-pill: 999px;
+  --shadow-card: 0 1px 2px #0000000d; --shadow-raised: 0 4px 16px #00000014, 0 1px 2px #0000000f; --shadow-phone: 0 12px 32px #00000017;
+}
