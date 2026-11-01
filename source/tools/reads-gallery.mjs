@@ -5,6 +5,34 @@
 const TILES = [];
 const tile = (name, label, svg) => TILES.push({ name, label, svg });
 
+// ---------- Screens and control panels: LCD controller ----------
+{
+  let btns = "";
+  [["\u25b2", 24], ["\u25bc", 36], ["SET", 48]].forEach(([t, y]) => {
+    btns += `<rect x="110" y="${y}" width="22" height="9" rx="2" fill="url(#rg-btn)" stroke="#6a6a68" stroke-width=".6"/><text x="121" y="${y + 6.4}" font-family="Inter, system-ui, sans-serif" font-size="${t === "SET" ? 5 : 5.5}" font-weight="700" fill="#2a2c2e" text-anchor="middle">${t}</text>`;
+  });
+  tile("Screens and panels", "Controller panel with an LCD screen showing temperature 21.4 degrees and humidity 65 percent, the temperature boxed by the camera", `
+  <defs>
+    <linearGradient id="rg-panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3f3f2"/><stop offset="1" stop-color="#c1c3bc"/></linearGradient>
+    <linearGradient id="rg-lcd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cfdcb8"/><stop offset="1" stop-color="#a7bc89"/></linearGradient>
+    <linearGradient id="rg-btn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d8d8d4"/></linearGradient>
+  </defs>
+  <rect x="16" y="14" width="128" height="72" rx="5" fill="url(#rg-panel)" stroke="#8e8b8b"/>
+  ${[[21, 19], [139, 19], [21, 81], [139, 81]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="1.6" fill="#a6a6a6" stroke="#6a6a68" stroke-width=".5"/>`).join("")}
+  <rect x="25" y="22" width="78" height="44" rx="2.5" fill="#2a2c2e"/>
+  <rect x="28" y="25" width="72" height="38" rx="1" fill="url(#rg-lcd)"/>
+  <g font-family="JetBrains Mono, ui-monospace, monospace" fill="#1f2a14">
+    <text x="32" y="33" font-size="5">TEMP</text><text x="96" y="43" font-size="13" font-weight="500" text-anchor="end">21.4\u00b0</text>
+    <text x="32" y="51" font-size="5">RH</text><text x="96" y="58" font-size="8" font-weight="500" text-anchor="end">65 %</text>
+  </g>
+  <rect x="55" y="30" width="44" height="16" rx="1.5" fill="none" stroke="#2f8fd0" stroke-width="1.4"/>
+  ${btns}
+  <circle cx="114" cy="68" r="2.6" fill="#0ca30c"/><circle cx="114" cy="68" r="4.5" fill="#0ca30c" opacity=".2"/>
+  <circle cx="125" cy="68" r="2.6" fill="#c1c3bc"/>
+  <rect x="25" y="72" width="78" height="7" rx="1" fill="#d8d8d4"/>
+  <text x="64" y="77.4" font-family="Inter, system-ui, sans-serif" font-size="4.6" font-weight="600" fill="#5f5f5d" text-anchor="middle" letter-spacing=".6">CONTROLLER</text>`);
+}
+
 // ---------- Digits and text: seven-segment display ----------
 const SEGS = { 0: "abcdef", 1: "bc", 2: "abged", 3: "abgcd", 4: "fgbc", 5: "afgcd", 6: "afgedc", 7: "abc", 8: "abcdefg", 9: "abcdfg" };
 function digit(x, y, d, w = 17, h = 34, t = 4) {
@@ -18,7 +46,7 @@ function digit(x, y, d, w = 17, h = 34, t = 4) {
   return Object.entries(r).map(([k, [rx, ry, rw, rh]]) =>
     `<rect x="${rx.toFixed(1)}" y="${ry.toFixed(1)}" width="${rw.toFixed(1)}" height="${rh.toFixed(1)}" rx="1.2" fill="${on.includes(k) ? "url(#rg-seg-on)" : "#24090a"}"/>`).join("");
 }
-tile("Digits and text", "Seven-segment display showing 07.28", `
+tile("Digit displays", "Seven-segment display showing 07.28", `
   <defs><linearGradient id="rg-seg-on" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5a4a"/><stop offset="1" stop-color="#e5372a"/></linearGradient></defs>
   <rect x="30" y="28" width="100" height="48" rx="4" fill="#1f2328"/>
   <rect x="34" y="32" width="92" height="40" rx="2" fill="#120707"/>
@@ -167,7 +195,7 @@ ${TILES.map((t) => `    <li><div class="rg-im"><svg viewBox="0 0 160 100" role="
   </ul>
   `;
 
-export const READS_GALLERY_CSS = `.rg{list-style:none;margin:0 0 28px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px 20px}
+export const READS_GALLERY_CSS = `.rg{list-style:none;margin:0 0 28px;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:20px 16px}
 .rg li{margin:0;text-align:center}
 .rg-im{background:var(--color-surface-2);border-radius:var(--radius-card);height:140px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .rg-im svg{width:100%;max-width:200px;height:100%;display:block}
