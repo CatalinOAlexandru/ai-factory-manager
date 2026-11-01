@@ -121,7 +121,10 @@ mustAll("<span>Concept demo · example data</span>", "<span>Demo · example data
 mustAll("Plans are a concept and can change.", "Plans can change.", 1);
 if (/planned/i.test(h)) throw new Error("'Planned' left in site HTML");
 if (/concept/i.test(h)) throw new Error("word left in site HTML: " + h.match(/.{0,40}concept.{0,40}/i)[0]);
-if (!h.includes("Demo · example data")) throw new Error("banner missing");
+// 1 Nov (Catalin): remove the "Demo · example data" banner at the top of the page. The footer and meta description still say it.
+must('<div class="banner"><b>Demo · example data.</b> All machines, names and numbers on this page are examples.</div>\n', "");
+if (h.includes('class="banner"')) throw new Error("top banner still in site HTML");
+if (!h.includes("<span>Demo · example data</span>")) throw new Error("footer 'Demo · example data' missing");
 writeFileSync(`${SITE}/index.html`, h);
 // Copy only the img/ files that the final HTML references. Unused design images are not published.
 const used = [...new Set([...h.matchAll(/(?:src|href)="(img\/[^"]+)"/g)].map((m) => m[1]))];
