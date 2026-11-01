@@ -4,6 +4,7 @@
 //      HERO_PHONE path of a phone image that replaces the design-crop hero phone (img/s6-logging.png).
 import { readFileSync, writeFileSync, mkdirSync, cpSync, rmSync, existsSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
+import { READS_GALLERY_HTML, READS_GALLERY_CSS } from "./reads-gallery.mjs";
 const ROOT = resolve(new URL("..", import.meta.url).pathname);
 const D = `${ROOT}/design`, SITE = `${ROOT}/site`, PUB = `${SITE}/public`;
 const DEMO_URL = process.env.DEMO_URL ?? "http://localhost:5190/";
@@ -102,6 +103,10 @@ must('<img src="img/img-008.jpg" alt="White camera case on a lab bench, angled u
   '<img src="img/img-008.jpg" alt="Small white cube camera on a round stand on a lab bench, with its lens turned toward an incubator touchscreen">');
 must('<img src="img/img-009.jpg" alt="Two growth chambers, each with a small white camera on a gooseneck arm in front of the controller">',
   '<img src="img/img-009.jpg" alt="Two growth chambers. On each, a small white camera on a gooseneck arm sits above the controller screen and points down at it">');
+// 1 Nov (Catalin): "What it can read" gets a gallery of small instrument illustrations above the table (tools/reads-gallery.mjs).
+must('<p>Each value gets the reader that suits it. The vision model marks the area one time, and you confirm it.</p></div>\n  <table class="tbl">',
+  '<p>Each value gets the reader that suits it. The vision model marks the area one time, and you confirm it.</p></div>\n  ' + READS_GALLERY_HTML + '<table class="tbl">');
+h = h.replace("</head>", `<style>${READS_GALLERY_CSS}</style>\n</head>`);
 const mustAll = (from, to, n) => { const c = h.split(from).length - 1; if (c !== n) throw new Error(`wording fix: expected ${n} x ${from}, found ${c}`); h = h.replaceAll(from, to); };
 // 30 Oct 22:32 (Catalin, voice): "What it can read" table. Keep the table and every row. Remove the Status column. All rows show as current functionality.
 must("<th>Examples</th><th>Status</th></tr>", "<th>Examples</th></tr>");
