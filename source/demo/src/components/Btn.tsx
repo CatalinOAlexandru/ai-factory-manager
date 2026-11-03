@@ -21,7 +21,7 @@ export function usePulse(on: boolean) {
  * The one shared button. variant "primary" = solid blue fill, "secondary" = white with a solid blue border.
  * disabled -> grey with a dashed border, cursor not-allowed, aria-disabled="true". The click does nothing.
  * size: "block" (full width, step footer), "md", "sm".
- * pulse: a button the script expects the user to press next. A soft blue glow fades in and out (2.4 s, ease-in-out).
+ * pulse: a button the script expects the user to press next. A strong blue ring flashes on and off (1 s) with a small bump.
  * It stops on hover, on focus and after the press. Never on a disabled button. Static ring with reduced motion.
  */
 export function Btn({ variant = "primary", size = "md", disabled, onClick, className = "", title, pulse = false, ...rest }:

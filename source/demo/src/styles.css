@@ -36,17 +36,21 @@
 /* 3D view: OrbitControls sets touch-action:none on its element. Keep one-finger vertical drags for page scroll. */
 .pp-3d, .pp-3d * { touch-action: pan-y !important; }
 
-/* Guided highlight (.guide-pulse, from Btn pulse / usePulse): a soft blue glow that fades in and out.
-   One cycle is --guide-pulse-duration (2.4 s), ease-in-out, no on/off step. Scale stays at 1.015 or less. One highlight per stage.
-   White gap ring first, so it shows on white and on blue. Stops on hover, keyboard focus and press. Never on disabled buttons.
-   Static ring when the user asks for reduced motion. */
+/* Guided highlight (.guide-pulse, from Btn pulse / usePulse): a strong blue ring that flashes on and off, with a small bump.
+   3 Nov (Catalin): the soft 2.4 s glow was too easy to miss. This brings back the earlier 1 s blink (from 62985e3).
+   One highlight per stage. White gap ring first, so it shows on white and on blue. Stops on hover, keyboard focus and press.
+   Never on disabled buttons. Static strong ring when the user asks for reduced motion. */
 @keyframes guide-pulse {
-  0%, 100% { box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(26, 140, 255, 0.35), 0 0 6px 2px rgba(26, 140, 255, 0.15); transform: scale(1); }
-  50% { box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(26, 140, 255, 0.6), 0 0 12px 4px rgba(26, 140, 255, 0.3); transform: scale(1.015); }
+  0% { transform: scale(1); box-shadow: 0 0 0 2px #fff, 0 0 0 5px #1a8cff, 0 0 18px 8px rgba(26, 140, 255, 0.75); }
+  12% { transform: scale(1.045); }
+  26% { transform: scale(1); }
+  50% { box-shadow: 0 0 0 2px #fff, 0 0 0 5px #1a8cff, 0 0 18px 8px rgba(26, 140, 255, 0.75); }
+  56%, 94% { box-shadow: 0 0 0 0 #fff, 0 0 0 0 rgba(26, 140, 255, 0), 0 0 0 0 rgba(26, 140, 255, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 2px #fff, 0 0 0 5px #1a8cff, 0 0 18px 8px rgba(26, 140, 255, 0.75); }
 }
-:root { --guide-pulse-duration: 2.4s; }
+:root { --guide-pulse-duration: 1s; }
 .guide-pulse:not([aria-disabled="true"]):not(:disabled):not(:hover):not(:focus-visible):not(:active) { animation: guide-pulse var(--guide-pulse-duration) ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) {
-  .guide-pulse:not([aria-disabled="true"]):not(:disabled):not(:hover):not(:focus-visible):not(:active) { animation: none; box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(26, 140, 255, 0.45), 0 0 8px 2px rgba(26, 140, 255, 0.2); }
+  .guide-pulse:not([aria-disabled="true"]):not(:disabled):not(:hover):not(:focus-visible):not(:active) { animation: none; box-shadow: 0 0 0 2px #fff, 0 0 0 5px #1a8cff, 0 0 14px 4px rgba(26, 140, 255, 0.6); }
 }
 
