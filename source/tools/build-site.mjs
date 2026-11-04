@@ -6,6 +6,7 @@ import { readFileSync, writeFileSync, mkdirSync, cpSync, rmSync, existsSync, rea
 import { resolve } from "node:path";
 import { READS_GALLERY_HTML, READS_GALLERY_CSS } from "./reads-gallery.mjs";
 import { DATA_SECTION_HTML, DATA_SECTION_CSS, HERO_LINE_HTML } from "./data-section.mjs";
+import { SECURITY_SECTION_HTML, SECURITY_SECTION_CSS } from "./security-section.mjs";
 const ROOT = resolve(new URL("..", import.meta.url).pathname);
 const D = `${ROOT}/design`, SITE = `${ROOT}/site`, PUB = `${SITE}/public`;
 const DEMO_URL = process.env.DEMO_URL ?? "http://localhost:5190/";
@@ -116,6 +117,12 @@ must('<section id="camera">', DATA_SECTION_HTML + '<section id="camera">');
 must('<div class="card"><h3>Where your data is stored</h3><p>We will confirm this before launch. Ask us about it in your demo.</p></div>',
   '<div class="card"><h3>You choose where your data is stored</h3><p>On-prem, on a PanelPal computer in your building. Or in our cloud. <a href="#data">Compare the two</a>.</p></div>');
 h = h.replace("</head>", `<style>${DATA_SECTION_CSS}</style>\n</head>`);
+// 4 Nov (Catalin): "Security standards" section before "Book a demo" (tools/security-section.mjs), with a nav and footer link.
+// Each standard shows an honest status: PanelPal is not certified yet.
+must('<section id="join">', SECURITY_SECTION_HTML + '<section id="join">');
+h = h.replaceAll('<a href="#privacy">Privacy &amp; data</a>', '<a href="#privacy">Privacy &amp; data</a><a href="#security">Security</a>');
+h = h.replace("</head>", `<style>${SECURITY_SECTION_CSS}</style>\n</head>`);
+if (/\bcertified\b(?! yet)/i.test(h.replace(/<[^>]*>/g, ""))) throw new Error("'certified' claim in site HTML: PanelPal holds no certificate yet");
 const mustAll = (from, to, n) => { const c = h.split(from).length - 1; if (c !== n) throw new Error(`wording fix: expected ${n} x ${from}, found ${c}`); h = h.replaceAll(from, to); };
 // 30 Oct 22:32 (Catalin, voice): "What it can read" table. Keep the table and every row. Remove the Status column. All rows show as current functionality.
 must("<th>Examples</th><th>Status</th></tr>", "<th>Examples</th></tr>");
