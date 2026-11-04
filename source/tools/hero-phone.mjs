@@ -5,7 +5,8 @@ import { mkdirSync } from "node:fs";
 const base = process.argv[2] ?? "http://localhost:5190/";
 const out = new URL("../site/generated/", import.meta.url).pathname;
 mkdirSync(out, { recursive: true });
-const b = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader"] });
+// PW_CHROMIUM: optional path to a Chromium binary, when the demo's Playwright has no browser of its own installed.
+const b = await chromium.launch({ executablePath: process.env.PW_CHROMIUM || undefined, args: ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader"] });
 const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
 const p = await ctx.newPage();
 await p.goto(base + "#/step/6?still", { waitUntil: "networkidle" });

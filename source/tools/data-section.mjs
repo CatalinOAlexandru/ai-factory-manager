@@ -88,7 +88,7 @@ export const DATA_SECTION_HTML = `<section id="data"><div class="wrap">
       <ul><li>Nothing to install or look after</li><li>See your sites from anywhere</li><li>Updates are done for you</li><li>The quickest way to start</li></ul>
     </div>
   </div>
-  <p class="note">Tell us which one you need when you book your demo.</p>
+  <p class="note">Tell us which one you need when you book your demo. The demo on this site shows both options.</p>
 </div></section>
 
 `;

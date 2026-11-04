@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 import { useDemo } from "../demo";
 import { Btn } from "./Btn";
 import { clock } from "../data";
+import { DeployBadge } from "./ui";
+import { useDeploy } from "../deploy";
 
 type Nav = "Site" | "Machines" | "Insights" | "Settings";
 
@@ -18,7 +20,7 @@ export const PlusIc = () => <Ic className="h-4 w-4"><path d="M12 5v14M5 12h14" /
 export const CamIc = ({ className = "h-[18px] w-[18px]" }: { className?: string }) => <Ic className={className}><rect x="3" y="7" width="18" height="12" rx="2" /><circle cx="12" cy="13" r="3.5" /><path d="M8 7l1.5-3h5L16 7" /></Ic>;
 
 export function ExPill() {
-  return <span className="inline-flex items-center rounded-full bg-warning-soft px-2.5 py-0.5 text-xs font-medium text-warning">Example data</span>;
+  return <span className="inline-flex shrink-0 items-center whitespace-nowrap rounded-full bg-warning-soft px-2.5 py-0.5 text-xs font-medium text-warning">Example data</span>;
 }
 function Who() {
   return <div title="Site manager (example user)" className="grid h-8 w-8 place-items-center rounded-full bg-accent-soft text-xs font-semibold text-accent-strong">SM</div>;
@@ -27,6 +29,7 @@ function Who() {
 /** Desktop web-app shell (top bar + side nav + content + right panel), as in design/screens. */
 export function DesktopApp({ active, children, panel, insightsCount, tick = 0 }: { active: Nav; children: ReactNode; panel: ReactNode; insightsCount?: number; tick?: number }) {
   const { go } = useDemo();
+  const [where] = useDeploy();
   return (
     <div className="flex h-full flex-col overflow-hidden bg-surface-2">
       <header className="flex h-14 shrink-0 items-center gap-4 border-b border-border bg-bg px-5">
@@ -34,6 +37,7 @@ export function DesktopApp({ active, children, panel, insightsCount, tick = 0 }:
         <div className="flex items-center gap-2 rounded-[8px] border border-border px-3 py-1.5 text-sm">Unit 1 <small className="text-muted">▾</small></div>
         <div className="flex-1" />
         <span className="tnum text-sm text-muted">Fri 30 Oct · {clock(tick, false)} GMT</span>
+        <DeployBadge where={where} />
         <ExPill />
         <Who />
       </header>
@@ -58,10 +62,11 @@ export function DesktopApp({ active, children, panel, insightsCount, tick = 0 }:
 
 /** Mobile app shell: header + scroll body + tab bar. */
 export function MobileApp({ active, children }: { active: Nav; children: ReactNode }) {
+  const [where] = useDeploy();
   return (
     <div className="absolute inset-0 flex flex-col bg-bg">
-      <header className="flex h-[52px] shrink-0 items-center gap-3 border-b border-border px-4">
-        <b className="min-w-0 truncate text-[15px] font-semibold tracking-tight">Example Factory Ltd</b><div className="flex-1" /><ExPill /><Who />
+      <header className="flex h-[52px] shrink-0 items-center gap-2 border-b border-border px-4">
+        <b className="min-w-0 truncate text-[15px] font-semibold tracking-tight">Example Factory Ltd</b><div className="flex-1" /><DeployBadge where={where} short /><ExPill /><Who />
       </header>
       <div className="no-scrollbar min-h-0 flex-1 overflow-y-auto px-4 pb-6 pt-4">{children}</div>
       <nav className="grid h-16 shrink-0 grid-cols-4 items-center border-t border-border bg-bg text-center text-sm">

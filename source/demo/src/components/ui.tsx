@@ -112,3 +112,24 @@ export function Card({ children, className = "" }: { children: ReactNode; classN
 export function ExampleTag({ className = "" }: { className?: string }) {
   return <span className={`text-[11px] text-faint ${className}`}>Example data</span>;
 }
+
+export function LockIc({ className = "h-3.5 w-3.5" }: { className?: string }) {
+  return <svg viewBox="0 0 20 20" className={`shrink-0 ${className}`} aria-hidden fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="9" width="12" height="8.5" rx="2" /><path d="M7 9V6.5a3 3 0 0 1 6 0V9" /></svg>;
+}
+export function CloudIc({ className = "h-3.5 w-3.5" }: { className?: string }) {
+  return <svg viewBox="0 0 20 20" className={`shrink-0 ${className}`} aria-hidden fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"><path d="M6 15.5a3.5 3.5 0 0 1 .3-7 5 5 0 0 1 9.5 1A3 3 0 0 1 15 15.5z" /></svg>;
+}
+export function BoxIc({ className = "h-5 w-5" }: { className?: string }) {
+  return <svg viewBox="0 0 24 24" className={`shrink-0 ${className}`} aria-hidden fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"><rect x="3" y="8" width="18" height="9" rx="2.5" /><path d="M6.5 11.5h6M6.5 13.8h6" strokeLinecap="round" /><circle cx="17.3" cy="13" r="1" fill="currentColor" /></svg>;
+}
+
+/** Header badge: where the data lives (step 1 choice). Short text on small screens. */
+export function DeployBadge({ where, short = false }: { where: "onprem" | "cloud"; short?: boolean }) {
+  const on = where === "onprem";
+  return (
+    <span title={on ? "On-prem: the data stays on a PanelPal computer in your building" : "Cloud: PanelPal runs the server for you"}
+      className={`inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-semibold ${on ? "bg-running-soft text-running" : "bg-accent-soft text-accent-strong"}`}>
+      {on ? <LockIc /> : <CloudIc />}{on ? (short ? "On-prem" : "On-prem · data stays on site") : "Cloud"}
+    </span>
+  );
+}
