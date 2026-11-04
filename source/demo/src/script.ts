@@ -11,7 +11,7 @@ export interface StepDef {
 
 export const STEPS: StepDef[] = [
   { n: 1, key: "describe", title: "Describe your site", short: "Describe", stages: [
-    { name: "Description", say: "The only typing is one short description. It is pre-filled here. Photos are optional. Tap Generate." },
+    { name: "Description", say: "The only typing is one short description. It is pre-filled here. Choose where the data lives: on-prem keeps it in your building, cloud is the simplest. Photos are optional. Tap Generate." },
   ] },
   { n: 2, key: "generate", title: "Dashboard generation", short: "Generate", stages: [
     { name: "Generating", say: "The AI reads the description, finds 12 machines, picks what to track and plans camera spots. In the real app this runs in the background.", autoMs: 6200 },
