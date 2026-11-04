@@ -42,7 +42,7 @@ cd source/site && node ../tools/build-site.mjs   # put the local preview back (T
 - Each patch has a dated comment recording who approved it. Keep that convention.
 - Guards fail the build if banned text comes back: "waitlist", "Planned", "concept", chip names (`esp32`/`xiao`), or a missing noindex or banner.
 - Only images that the final HTML references are copied into `site/public/img/`, from `source/assets/img/` first and then `design/src/img/`. Unused images or brand files fail the build.
-- Extra sections are kept in their own modules and injected by a `must` patch. For example, `tools/reads-gallery.mjs` holds the inline-SVG reader illustrations in "What it can read", and `tools/data-section.mjs` holds the on-prem / cloud section ("Your data, your choice") and the hero line that links to it.
+- Extra sections are kept in their own modules and injected by a `must` patch. For example, `tools/reads-gallery.mjs` holds the inline-SVG reader illustrations in "What it can read", and `tools/data-section.mjs` holds the on-prem / cloud section ("Your data, your choice") and the hero line that links to it. `tools/security-section.mjs` lists security standards with an honest status for each: PanelPal holds no certificate yet, and the build fails on a "certified" claim.
 
 `source/site/index.html` and `site/public/` are generated. Do not hand-edit them.
 
